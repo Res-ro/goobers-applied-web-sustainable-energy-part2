@@ -2,10 +2,13 @@
 
 // checks database settings
 require_once("settings.php");
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") { // checks if the form was submitted using the POST method
-
-    $conn = mysqli_connect($host, $user, $pwd, $sql_db); // establishes a connection using the configuration in settings.php
+ // establishes a connection using the configuration in settings.php
+ // if the user tries to directly access the page, they will be sent back to the Apply page
+if ($_SERVER["REQUEST_METHOD"] != "POST") {
+    header("Location: apply.php");
+    exit();
+}
+    $conn = mysqli_connect($host, $user, $pwd, $sql_db);
 
     if (!$conn) {
         die("Connection failed");
