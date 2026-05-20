@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Available Jobs</title>
+	<link rel="stylesheet" href="./styles/styles.css">
+	<style>
+		aside {
+			width: 25%;
+  			margin-left: 20%;
+  			padding: 15px;
+  			border: 2px solid #6b520f;
+		}
+	</style>
+</head>
+
+<body>
+	<header>
+		<div id="header">
+		      <a href="index.html">
+			  <img src="images/logo.png" alt="Goobers Logo" id="logo" aria-label="Go to homepage" title="Take me home!">
+		      </a>
+			<h1>Goobers Careers</h1>
+        <form id="search-box" action="#" aria-label="Site search">
+
+          <label for="search-input" class="visually-hidden">Search the site</label>
+
+          <input type="text" id="search-input" placeholder="Search..." name="search" pattern="[A-Za-z0-9\s.,'-]{1,100}" maxlength="100" aria-label="Search input field">
+
+          <button type="submit" aria-label="Submit search">
+            Search
+          </button>
+
+        </form>
+		</div>
+
+		<nav id="links">
+			<ul>
+				<li><a href="index.html">Home</a></li>
+				<li><a href="jobs.html">Jobs</a></li>
+				<li><a href="apply.html">Apply</a></li>
+				<li><a href="about_us.html">About Us</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+
+		<section>
+			<h2 style="color: inherit; font-size: 2em; font-weight: bold;">Available Jobs</h2>
+			<h2>Renewable Energy Career Opportunities</h2>
+		  
+			<div class="top-layout">
+			  <ol>
+				<li>Browse available job roles</li>
+				<li>Open a job to view full details</li>
+				<li>Click apply and submit your application</li>
+			  </ol>
+		  
+			  <aside>
+				<h3>Application Tip</h3>
+				<p>Ensure your CV highlights relevant technical skills and teamwork experience.</p>
+			  </aside>
+			</div>
+		  </section>
+
+		<section>
+			<div class="job-cards-container">
+
+				<!-- HEAD OF MEDIA -->
+				<div class="job-cards">
+					<div class="job-card-contents">
+						<input type="checkbox" id="job1-toggle" class="modal-toggle" /> <!--WAVE Multiple Form Label Errors due to required Modal Implementation-->
+
+						<label for="job1-toggle" class="job-card">
+							<span style="display: block; color: #8b6b13; font-size: 1.5em; font-weight: bold; margin: 0.67em 0;">Head of Media</span>
+							<span class="location" style="display: block;">&copy; Goobers - Melbourne</span>
+							<span class="job-description" style="display: block;">
+								Lead media strategy and communication efforts focused on sustainability awareness.
+							</span>
+						</label>
+
+						<div class="job-modal">
+							<label for="job1-toggle" class="modal-bg" aria-label="modal background"></label> <!--Empty Label uses aria-label to avoid WAVE error but produces w3validator instead-->
+							<div class="modal-content">
+
+								<h2>Head of Media</h2>
+
+								<h3><strong>Reference:</strong> J9K4M</h3>
+								<h4><strong>Short Description:</strong> Lead media strategy and sustainability
+									communication initiatives.</h4>
+								<h4><strong>Salary:</strong> $90,000 AUD</h4>
+								<h4><strong>Reporting Line:</strong> Reports directly to the Marketing Director</h4>
+
+								<hr>
+
+								<h4><strong>Key Responsibilities:</strong></h4>
+								<ul>
+									<li>Develop and execute media campaigns</li>
+									<li>Manage external communications</li>
+									<li>Oversee content production</li>
+								</ul>
+
+								<h4><strong>Essential Requirements:</strong></h4>
+								<ul>
+									<li>Degree in Media, Communications, or related field</li>
+									<li>Experience in media strategy or marketing</li>
+								</ul>
+
+								<h4><strong>Preferable Requirements:</strong></h4>
+								<ul>
+									<li>Experience in sustainability campaigns</li>
+									<li>Leadership experience</li>
+								</ul>
+
+								<div class="apply-row">
+									<a href="apply.html" class="apply-button">Apply</a><!--Redundant Links due to apply buttons inside modals-->
+									<span class="job-ref">REF: J9K4M</span>
+								</div>
+
+								<label for="job1-toggle" class="exit">&times;</label>
+
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+				<!-- FRONT-END DEVELOPER -->
+				<div class="job-cards">
+					<div class="job-card-contents">
+						<input type="checkbox" id="job2-toggle" class="modal-toggle" /><!--WAVE Multiple Form Label Errors due to required Modal Implementation-->
+
+						<label for="job2-toggle" class="job-card">
+							<span style="display: block; color: #8b6b13; font-size: 1.5em; font-weight: bold; margin: 0.67em 0;">Front-End Developer</span>
+							<span class="location" style="display: block;">&copy; Goobers - Melbourne</span>
+							<span class="job-description" style="display: block;">
+								Build and maintain user-facing websites that promote renewable energy.
+							</span>
+						</label>
+
+						<div class="job-modal">
+							<label for="job2-toggle" class="modal-bg" aria-label="modal background"></label> <!--Empty Label uses aria-label to avoid WAVE error but produces w3validator instead-->
+							<div class="modal-content">
+
+								<h2>Front-End Developer</h2>
+
+								<h3><strong>Reference:</strong> F8K2M</h3>
+								<h4><strong>Short Description:</strong> Develop responsive web interfaces for
+									sustainability platforms.</h4>
+								<h4><strong>Salary:</strong> $85,000 AUD</h4>
+								<h4><strong>Reporting Line:</strong> Reports to Senior Web Developer</h4>
+
+								<hr>
+
+								<h4><strong>Key Responsibilities:</strong></h4>
+								<ul>
+									<li>Build responsive UI components</li>
+									<li>Improve website performance</li>
+									<li>Ensure cross-browser compatibility</li>
+								</ul>
+
+								<h4><strong>Essential Requirements:</strong></h4>
+								<ul>
+									<li>HTML, CSS, JavaScript experience</li>
+									<li>Responsive design knowledge</li>
+								</ul>
+
+								<h4><strong>Preferable Requirements:</strong></h4>
+								<ul>
+									<li>React or Vue experience</li>
+									<li>UI/UX familiarity</li>
+								</ul>
+
+								<div class="apply-row">
+									<a href="apply.html" class="apply-button">Apply</a><!--Redundant Links due to apply buttons inside modals-->
+									<span class="job-ref">REF: F8K2M</span>
+								</div>
+
+								<label for="job2-toggle" class="exit">&times;</label>
+
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+				<!-- SUSTAINABILITY EXPERT -->
+				<div class="job-cards">
+					<div class="job-card-contents">
+						<input type="checkbox" id="job3-toggle" class="modal-toggle" /><!--WAVE Multiple Form Label Errors due to required Modal Implementation-->
+
+						<label for="job3-toggle" class="job-card">
+							<span style="display: block; color: #8b6b13; font-size: 1.5em; font-weight: bold; margin: 0.67em 0;">Sustainability Expert</span>
+							<span class="location" style="display: block;">&copy; Goobers - Melbourne</span>
+							<span class="job-description" style="display: block;">
+								Provide expert guidance on sustainable practices and environmental impact reduction. 
+							</span>
+						</label>
+
+						<div class="job-modal">
+							<label for="job3-toggle" class="modal-bg" aria-label="modal background"></label> <!--Empty Label uses aria-label to avoid WAVE error but produces w3validator instead-->
+							<div class="modal-content">
+
+								<h2>Sustainability Expert</h2>
+
+								<h3><strong>Reference:</strong> S3T8E</h3>
+								<h4><strong>Short Description:</strong> Advise on sustainability strategies and implement environmentally responsible solutions.</h4>
+								<h4><strong>Salary:</strong> $95,000 AUD</h4>
+								<h4><strong>Reporting Line:</strong> Reports to Head of Sustainability</h4>
+
+								<hr>
+
+								<h4><strong>Key Responsibilities:</strong></h4>
+								<ul>
+									<li>Develop and implement sustainability initiatives</li>
+									<li>Conduct environmental impact assessments</li>
+									<li>Advise teams on sustainable practices and compliance</li>
+									<li>Monitor and report on sustainability performance</li>
+								</ul>
+
+								<h4><strong>Essential Requirements:</strong></h4>
+								<ul>
+									<li>Degree in Environmental Science, Sustainability, or related field</li>
+									<li>Experience in sustainability consulting or environmental management</li>
+								</ul>
+
+								<h4><strong>Preferable Requirements:</strong></h4>
+								<ul>
+									<li>Knowledge of Australian environmental regulations</li>
+									<li>Experience with corporate sustainability reporting frameworks</li>
+									<li>Strong analytical and problem-solving skills</li>
+								</ul>
+
+								<div class="apply-row">
+									<a href="apply.html" class="apply-button">Apply</a> <!--Redundant Links due to apply buttons inside modals-->
+									<span class="job-ref">REF: S3T8E</span>
+								</div>
+
+								<label for="job3-toggle" class="exit">&times;</label>
+
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+		</section>
+
+	</main>
+
+	<footer>
+		<hr>
+		<p>&copy; 2026 Goobers. All rights reserved.</p>
+		<p>
+			<a href="https://student-team-dxgbe8hd.atlassian.net/jira/software/projects/SCRUM/boards/1">Jira Project</a>
+			|
+			<a href="https://github.com/Res-ro/goobers-applied-web-sustainable-energy">GitHub Repository</a> |
+			<a href="mailto:info@goobers.com">Email Us</a>
+		</p>
+	</footer>
+
+</body>
+
+</html>

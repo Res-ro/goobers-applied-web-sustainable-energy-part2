@@ -1,0 +1,584 @@
+ /* MAIN STYLES / predominantly used by index.html */
+/* Some parts of this section of code were generated or adapted using ChatGPT (OpenAI, version GPT-5, October 2025). 
+All AI-generated code was reviewed and modified by the author before use.*/
+ 
+ /* MAIN STYLES */
+ @keyframes gradientShift {
+     0% {
+         background-position: 0% 50%;
+    }
+     50% {
+         background-position: 100% 50%;
+    }
+     100% {
+         background-position: 0% 50%;
+    }
+ }
+
+ /* AI-assisted structure for smooth gradient animation shifts (ChatGPT GPT-5, October 2025).*/
+ @-webkit-keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+ body, main {
+     width: 100%;
+     margin: 0;
+     padding: 0;
+     font-family: Verdana, Geneva, sans-serif;
+     background: linear-gradient(135deg, #faf8f2, #f0e6cc, #dab262, #f0e6cc, #faf8f2);
+     background-size: 400% 400%;
+     animation: gradientShift 16s ease infinite;
+}
+
+
+    #header {
+      flex-wrap: wrap;
+      padding: 10px;
+      gap: 8px;
+    }
+  
+    #header h1 {
+      line-height: normal;
+      font-size: 1.4rem;
+    }
+  
+    #logo {
+      width: 70px;
+      margin-right: 0;
+    }
+  
+    #search-box {
+      margin-left: 0;
+      width: 100%;
+    }
+  
+    #search-box input {
+      width: 100%;
+    }
+  
+    #links {
+      width: 100%;
+      border-radius: 12px;
+      padding: 0 10px;
+      box-sizing: border-box;
+    }
+  
+    #links ul {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+  
+    main {
+      width: 95%;
+      padding: 10px;
+    }
+  
+    .contentBox {
+      padding: 15px;
+    }
+  
+    form {
+      width: 95%;
+      box-sizing: border-box;
+    }
+  
+    .job-cards {
+      width: 100%;
+      margin: 2% 0;
+      height: auto;
+    }
+  
+    table {
+      font-size: 0.7rem;
+    }
+  
+    th, td {
+      padding: 6px;
+      font-size: 0.65rem;
+    }
+  
+    .modal-content {
+      width: 95%;
+      height: 85vh;
+    }
+  
+    footer {
+      font-size: 0.85rem;
+      padding: 10px;
+    }
+  
+  
+/* AI-assisted refinement of background transition effects for smoother user experience. (ChatGPT GPT-5, October 2025).*/
+/* MAIN LINK STYLING */
+ main a {
+     display: inline-block;
+     color: #8b6b13;
+     font-weight: bold;
+     text-decoration: none;
+     padding: 8px 18px;
+     border: 2px solid #8b6b13;
+     border-radius: 20px;
+     transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+/* AI-assisted refinement of hover transition effects and button like shape for links (ChatGPT GPT-5, October 2025).*/
+ main a:hover {
+     background-color: #8b6b13;
+     color: white;
+     transform: translateY(-2px);
+     box-shadow: 0 4px 12px rgba(139, 107, 19, 0.3);
+}
+
+/* Logo */
+ #logo {
+     width: 100px;
+     height: auto;
+     float: left;
+     margin-right: -8px;
+}
+/* Visually hides form label*/
+/* Visually hidden function inspired by: https://a11y-guidelines.orange.com/en/articles/accessible-hiding/#:~:text=The%20conventional%20way%20is%20to,also%20for%20screen%20reader%20users. Accessed: 18 Apr 2026 */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+#highlights img {
+  max-width: 80%;
+  height: auto;
+  border-radius: 10px;
+  display: block;
+  margin: 0 auto 20px auto;
+}
+/* Transform function inspired by: https://www.w3schools.com/cssref/css3_pr_transform.php Accessed: 18 Apr 2026 */
+ #logo:hover {
+     transform: scale(1.1) rotate(-3deg);
+}
+
+/* HEADER */
+#header {
+  display: flex;
+  align-items: center;
+  padding: 2px 20px;
+  gap: 2px;
+}
+
+
+#header h1 {
+     line-height: 100px;
+     margin: 0;
+     padding: 0;
+}
+
+
+main {
+  width: 80%;
+  margin: 30px auto;
+  padding: 20px;
+  background: transparent;
+}
+
+/* Search box */
+/* Search function inspired by: https://www.w3schools.com/HOWTO/howto_css_searchbar.asp  Accessed: 18 Apr 2026 */
+ #search-box {
+     display: inline-flex;
+     align-items: center;
+     border-radius: 25px;
+     overflow: hidden;
+     box-shadow: 0 10px 35px rgba(0, 0, 0, 0.4);
+     background: rgba(255, 255, 255, 0.8);
+     margin: 0;
+     margin-left: auto;
+     padding: 0;
+     border: none;
+     gap: 0;
+     width: auto;
+     flex-direction: row;
+     box-sizing: border-box;
+}
+
+ #search-box input {
+  border: none;
+  padding: 8px 14px;
+  background: transparent;
+  outline: none;
+  font-family: inherit;
+  width: 160px;
+  min-width: 60px;
+}
+
+
+/* Navbar links*/
+#links {
+     margin: 0 auto 20px auto;
+     width: fit-content;
+     position: relative;
+     background: rgba(255, 255, 255, 0.85);
+     backdrop-filter: blur(8px);
+     border-radius: 50px;
+     padding: 0 30px;
+     box-shadow: 0 4px 20px rgba(139, 107, 19, 0.2);
+     border: 1px solid rgba(201, 168, 76, 0.3);
+}
+ #links ul {
+     list-style: none;
+     display: flex;
+     justify-content: center;
+     gap: 20px;
+     margin: 0;
+     padding: 0;
+     cursor: pointer;
+}
+ #links li {
+     padding: 10px 0;
+}
+ #links a {
+     text-decoration: none;
+     font-weight: bold;
+     color: black;
+     position: relative;
+     padding-bottom: 4px;
+}
+ #links a::after {
+     content: '';
+     position: absolute;
+     bottom: 0;
+     left: 0;
+     width: 0;
+     height: 2px;
+     background-color: #8b6b13;
+     transition: width 0.3s ease;
+}
+ #links a:hover::after {
+     width: 100%;
+}
+ #links a:hover {
+     color: #8b6b13;
+}
+/* AI-assisted styling for navigation bar layout and animated underline effects using ChatGPT (OpenAI, GPT-5, October 2025). */
+/* footer */
+ footer {
+     text-align: center;
+     padding: 15px;
+     margin-top: 30px;
+     color: rgb(0, 0, 0);
+}
+/* ABOUT US CSS */
+/* body content */
+/* header */
+
+/* sections */
+ .contentBox {
+     margin-bottom: 40px;
+     padding: 25px;
+     border-radius: 15px;
+     background-color: rgba(255, 255, 255, 0.75);
+     border: 2px solid rgba(255, 255, 255, 0.4);
+     transition: background-color 0.5s ease, border-color 0.5s ease, transform 0.4s ease, box-shadow 0.4s ease;
+}
+ .contentBox:hover {
+     background-color: rgba(255, 255, 255, 0.9);
+     border: 2px solid rgba(201, 168, 76, 0.5);
+     transform: translateY(-4px);
+     box-shadow: 0 8px 20px rgba(139, 107, 19, 0.15);
+}
+
+/* AI-assisted UI enhancements for hover interactivity and elevation effects using ChatGPT (OpenAI, GPT-5, October 2025). */
+/* headings */
+ h2 {
+     color: #8b6b13;
+}
+/* nested lists */
+ .contentBox ul ul {
+     list-style-type: circle;
+     margin-left: 20px;
+}
+/* definition list */
+ dt {
+     font-weight: bold;
+     color: #8b6b13;
+}
+ dd {
+     margin-left: 20px;
+}
+/* student ID styling */
+ .student-id {
+     font-weight: bold;
+     color: #8b6b13;
+}
+/* figure */
+ figure {
+     text-align: center;
+     border: 2px solid #8b6b13;
+     padding: 10px;
+     border-radius: 10px;
+}
+
+/* table configuration */
+/* Word wrap inspired by: https://www.w3schools.com/cssref/css3_pr_word-wrap.php Accessed: 18 Apr 2026 */
+ table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff;
+  table-layout: fixed;
+  word-wrap: break-word; 
+}
+
+
+/* Word break inspired by: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/word-break  Accessed: 18 Apr 2026 */
+th, td {
+  padding: 10px;
+  border: 2px solid #8b6b13;
+  text-align: center;
+  font-size: 0.75rem;
+  word-break: keep-all; 
+}
+
+
+ th {
+     background-color: #8b6b13;
+     color: #ffffff;
+}
+ tr:hover td {
+     background-color: #d6b65c;
+}
+ caption {
+     font-weight: bold;
+     margin-bottom: 10px;
+     color: #8b6b13;
+}
+ figure img {
+     max-width: 100%;
+     height: auto;
+}
+/* APPLY CSS */
+/* MAIN FORM CARD */
+ form {
+     width: 600px;
+     margin: 0 auto;
+     display: flex;
+     flex-direction: column;
+     gap: 15px;
+     padding: 25px;
+     background: #ffffff;
+     border: 2px solid #8b6b13;
+     border-radius: 16px;
+     box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+ .application-form {
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+}
+/* SECTION "BUBBLES" */
+ .reference, .personal, .address, .contact, .other {
+     display: flex;
+     flex-direction: column;
+     gap: 10px;
+     padding: 15px;
+     border-radius: 12px;
+     background: #f4f6f8;
+}
+/* skills section container */
+ .skills {
+     display: grid;
+     gap: 24px;
+     padding: 15px;
+     border-radius: 12px;
+     background: #f4f6f8;
+}
+/* LABELS */
+ label {
+     font-weight: bold;
+}
+/* INPUTS */
+ input, select, textarea {
+     padding: 8px;
+     border-radius: 6px;
+     border: 1px solid #ccc;
+     box-sizing: border-box;
+}
+/* focus effect */
+ input:focus, select:focus, textarea:focus {
+     outline: none;
+     border-color: #8b6b13;
+     box-shadow: 0 0 6px rgba(188,145,26,0.4);
+}
+
+/* Fieldset and legend change */
+.skills-grid fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
+
+.skills-grid fieldset legend {
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.skills-grid fieldset label {
+    display: inline;
+}
+
+/* BUTTON */
+ button {
+     padding: 12px;
+     background: #8b6b13;
+     color: white;
+     border: none;
+     border-radius: 8px;
+     cursor: pointer;
+     font-weight: bold;
+}
+ button:hover {
+     background: #a87f14;
+}
+/* JOBS CSS */
+/* Job Intro Section */
+.top-layout {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+}
+/* Job Card Formatting and Function */
+ .job-cards-container {
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: flex-start;
+     margin: 0 auto;
+     border-radius: 5px;
+}
+ .modal-toggle {
+     display: none;
+}
+/* Job Card Style */
+ .job-cards {
+     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+     transition: 0.3s;
+     border-radius: 5px;
+     width: 30%;
+     min-height: 300px;
+     border: 1px solid lightgrey;
+     background-color: rgba(255, 255, 255, 0.75);
+     margin: 1%;
+     text-align: center;
+}
+ .job-description {
+     display: -webkit-box;
+     -webkit-box-orient: vertical;
+     -webkit-line-clamp: 3;
+    /* number of lines shown */
+     overflow: hidden;
+     text-overflow: ellipsis;
+}
+ .job-cards:hover {
+     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+     background-color: rgba(255, 255, 255, 0.9);
+}
+ .job-card-contents {
+     padding: 2px 16px;
+     font-size: x-large;
+}
+/* Job Modal Style */
+ .job-modal {
+     display: flex;
+     position: fixed;
+     z-index: 10;
+     left: 0;
+     top: 0;
+     width: 100%;
+     height: 100%;
+     background-color: rgba(0,0,0,0.6);
+     justify-content: center;
+     align-items: center;
+     padding: 20px;
+     box-sizing: border-box;
+     opacity: 0;
+     pointer-events: none;
+     transition: opacity 0.1s ease;
+}
+ .modal-content {
+     position: relative;
+     background-color: white;
+     max-width: 600px;
+     width: 80%;
+     height: 70vh;
+     overflow-y: auto;
+     padding: 20px;
+     border: 1px solid gray;
+     border-radius: 5px;
+     transform: translateY(-30px) scale(0.95);
+     transition: transform 0.2s ease;
+}
+ .modal-bg {
+     position: absolute;
+     width: 100%;
+     height: 100%;
+     cursor: pointer;
+     
+}
+ .modal-toggle:checked ~ .job-modal {
+     opacity: 1;
+     pointer-events: auto;
+}
+ .modal-toggle:checked ~ .job-modal .modal-content {
+     transform: translateY(0) scale(1);
+}
+ .exit {
+     color: red;
+     float: right;
+     top: 0;
+     right: 0;
+     position: absolute;
+     padding: 20px 25px;
+     font-size: 28px;
+     font-weight: bold;
+     text-decoration: none;
+}
+ .exit:hover, .exit:focus {
+     color: darkred;
+     cursor: pointer;
+}
+ .apply-row {
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     margin-top: 15px;
+}
+ .job-ref {
+     font-size: 0.75rem;
+     color: black;
+     font-weight: normal;
+}
+
+/* AI-assisted responsiveness design implementation on screen sizes which are less than 768px (ChatGPT GPT-5, October 2025).*/
+@media (max-width: 768px) {
+  body, main{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: Verdana, Geneva, sans-serif;
+    background: linear-gradient(135deg, #faf8f2, #f0e6cc, #dab262, #f0e6cc, #faf8f2);
+    background-size: 400% 400%;
+    animation: gradientShift 4s ease infinite;
+    -webkit-animation: gradientShift 4s ease infinite;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+}
