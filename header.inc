@@ -32,7 +32,7 @@
       <nav id="links" aria-label="Main navigation">
         <ul>
           <li>
-            <a href="index.html" aria-current="page">Home</a>
+            <a href="index.php" aria-current="page">Home</a>
           </li>
           <li><a href="jobs.html">Jobs</a></li>
           <li><a href="apply.html">Apply</a></li>
