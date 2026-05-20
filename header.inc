@@ -10,7 +10,7 @@
 
     <header>
       <div id="header">
-	      <a href="index.html">
+	      <a href="index.php">
 		     <img src="images/logo.png" alt="Goobers Logo" id="logo" aria-label="Go to homepage" title="Take me home!">
         </a>
 
