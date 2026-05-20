@@ -1,64 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Available Jobs</title>
-	<link rel="stylesheet" href="./styles/styles.css">
-	<style>
-		aside {
-			width: 25%;
-  			margin-left: 20%;
-  			padding: 15px;
-  			border: 2px solid #6b520f;
-		}
-	</style>
-</head>
-
-<body>
-	<header>
-		<div id="header">
-		      <a href="index.html">
-			  <img src="images/logo.png" alt="Goobers Logo" id="logo" aria-label="Go to homepage" title="Take me home!">
-		      </a>
-			<h1>Goobers Careers</h1>
-        <form id="search-box" action="#" aria-label="Site search">
-
-          <label for="search-input" class="visually-hidden">Search the site</label>
-
-          <input type="text" id="search-input" placeholder="Search..." name="search" pattern="[A-Za-z0-9\s.,'-]{1,100}" maxlength="100" aria-label="Search input field">
-
-          <button type="submit" aria-label="Submit search">
-            Search
-          </button>
-
-        </form>
-		</div>
-
-		<nav id="links">
-			<ul>
-				<li><a href="index.html">Home</a></li>
-				<li><a href="jobs.html">Jobs</a></li>
-				<li><a href="apply.html">Apply</a></li>
-				<li><a href="about_us.html">About Us</a></li>
-			</ul>
-		</nav>
-	</header>
-
+<?php
+session_start();
+require_once("settings.php");
+?>
+<?php include "header.inc" ?>
 	<main>
 
 		<section>
 			<h2 style="color: inherit; font-size: 2em; font-weight: bold;">Available Jobs</h2>
 			<h2>Renewable Energy Career Opportunities</h2>
-		  
+
 			<div class="top-layout">
 			  <ol>
 				<li>Browse available job roles</li>
 				<li>Open a job to view full details</li>
 				<li>Click apply and submit your application</li>
 			  </ol>
-		  
+
 			  <aside>
 				<h3>Application Tip</h3>
 				<p>Ensure your CV highlights relevant technical skills and teamwork experience.</p>
@@ -116,7 +73,7 @@
 								</ul>
 
 								<div class="apply-row">
-									<a href="apply.html" class="apply-button">Apply</a><!--Redundant Links due to apply buttons inside modals-->
+									<a href="apply.php" class="apply-button">Apply</a><!--Redundant Links due to apply buttons inside modals-->
 									<span class="job-ref">REF: J9K4M</span>
 								</div>
 
@@ -175,7 +132,7 @@
 								</ul>
 
 								<div class="apply-row">
-									<a href="apply.html" class="apply-button">Apply</a><!--Redundant Links due to apply buttons inside modals-->
+									<a href="apply.php" class="apply-button">Apply</a><!--Redundant Links due to apply buttons inside modals-->
 									<span class="job-ref">REF: F8K2M</span>
 								</div>
 
@@ -196,7 +153,7 @@
 							<span style="display: block; color: #8b6b13; font-size: 1.5em; font-weight: bold; margin: 0.67em 0;">Sustainability Expert</span>
 							<span class="location" style="display: block;">&copy; Goobers - Melbourne</span>
 							<span class="job-description" style="display: block;">
-								Provide expert guidance on sustainable practices and environmental impact reduction. 
+								Provide expert guidance on sustainable practices and environmental impact reduction.
 							</span>
 						</label>
 
@@ -235,7 +192,7 @@
 								</ul>
 
 								<div class="apply-row">
-									<a href="apply.html" class="apply-button">Apply</a> <!--Redundant Links due to apply buttons inside modals-->
+									<a href="apply.php" class="apply-button">Apply</a> <!--Redundant Links due to apply buttons inside modals-->
 									<span class="job-ref">REF: S3T8E</span>
 								</div>
 
@@ -252,17 +209,4 @@
 
 	</main>
 
-	<footer>
-		<hr>
-		<p>&copy; 2026 Goobers. All rights reserved.</p>
-		<p>
-			<a href="https://student-team-dxgbe8hd.atlassian.net/jira/software/projects/SCRUM/boards/1">Jira Project</a>
-			|
-			<a href="https://github.com/Res-ro/goobers-applied-web-sustainable-energy">GitHub Repository</a> |
-			<a href="mailto:info@goobers.com">Email Us</a>
-		</p>
-	</footer>
-
-</body>
-
-</html>
+<?php include "footer.inc" ?>

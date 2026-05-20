@@ -1,44 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Apply</title>
-  <link rel="stylesheet" href="./styles/styles.css">
-</head>
-
-<body>
-
-  <header>
-
-    <div id="header">
-	      <a href="index.html">
-		  <img src="images/logo.png" alt="Goobers Logo" id="logo" aria-label="Go to homepage" title="Take me home!">
-	      </a>
-      <h1>Job Applications</h1>
-        <form id="search-box" action="#" aria-label="Site search">
-
-          <label for="search-input" class="visually-hidden">Search the site</label>
-
-          <input type="text" id="search-input" placeholder="Search..." name="search" pattern="[A-Za-z0-9\s.,'-]{1,100}" maxlength="100" aria-label="Search input field">
-
-          <button type="submit" aria-label="Submit search">
-            Search
-          </button>
-
-        </form>
-    </div>
-
-    <nav id="links" aria-label="Main navigation">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="jobs.html">Jobs</a></li>
-        <li><a href="apply.html" aria-current="page">Apply</a></li>
-        <li><a href="about_us.html">About Us</a></li>
-      </ul>
-    </nav>
-
-  </header>
+<?php
+session_start();
+require_once("settings.php");
+?>
+<?php include "header.inc" ?>
 
   <main>
 
@@ -155,15 +119,4 @@
 
   </main>
 
-  <footer aria-label="Footer information">
-    <hr>
-    <p>&copy; 2026 Goobers. All rights reserved.</p>
-    <p>
-      <a href="https://student-team-dxgbe8hd.atlassian.net/jira/software/projects/SCRUM/boards/1">Jira Project</a> |
-      <a href="https://github.com/Res-ro/goobers-applied-web-sustainable-energy">GitHub Repository</a> |
-      <a href="mailto:info@goobers.com">Email Us</a>
-    </p>
-  </footer>
-
-</body>
-</html>
+<?php include "footer.inc" ?>
