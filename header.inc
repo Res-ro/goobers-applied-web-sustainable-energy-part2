@@ -16,17 +16,14 @@
 
         <h1>Goobers</h1>
           <!-- Search box -->
-        <form id="search-box" action="#" aria-label="Site search">
-
+	<form method="GET" action="search_result.php" id="search-box" aria-label="Site search">
           <label for="search-input" class="visually-hidden">Search the site</label>
-
           <input type="text" id="search-input" placeholder="Search..." name="search" pattern="[A-Za-z0-9\s.,'-]{1,100}" maxlength="100" aria-label="Search input field">
-
-          <button type="submit" aria-label="Submit search">
+          <button type="submit">
             Search
           </button>
-
         </form>
+
       </div>
      <!-- Navigation Bar -->
       <nav id="links" aria-label="Main navigation">
@@ -40,3 +37,20 @@
         </ul>
       </nav>
     </header>
+
+<?php
+$dbuser = "webuser";
+$dbpass = "password123";
+$conn = mysqli_connect($host, $dbuser, $dbpass, $dbname);
+
+if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["search"])) {
+
+	$search_query = $_GET["search"];
+
+	  # Warning, unsanitised input
+	$_SESSION['search'] = $search_query;
+	header("Location: search_result.php?q=" . urlencode($search_query));
+	exit();
+}
+
+?>
