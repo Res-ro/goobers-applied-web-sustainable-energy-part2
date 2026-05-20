@@ -1,96 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Goobers - Home</title>
-    <link rel="stylesheet" href="./styles/styles.css">
-    <style>
-      /* Example of Embedded CSS */
-      footer hr {
-        margin-top: 20px;
-      }
-    </style>
-  
-  </head>
-  <body>
-
-    <header>
-      <div id="header">
-	      <a href="index.html">
-		     <img src="images/logo.png" alt="Goobers Logo" id="logo" aria-label="Go to homepage" title="Take me home!">
-        </a>
-
-        <h1>Goobers</h1>
-          <!-- Search box -->
-        <form id="search-box" action="#" aria-label="Site search">
-
-          <label for="search-input" class="visually-hidden">Search the site</label>
-
-          <input type="text" id="search-input" placeholder="Search..." name="search" pattern="[A-Za-z0-9\s.,'-]{1,100}" maxlength="100" aria-label="Search input field">
-
-          <button type="submit" aria-label="Submit search">
-            Search
-          </button>
-
-        </form>
-      </div>
-     <!-- Navigation Bar -->
-      <nav id="links" aria-label="Main navigation">
-        <ul>
-          <li>
-            <a href="index.html" aria-current="page">Home</a>
-          </li>
-          <li><a href="jobs.html">Jobs</a></li>
-          <li><a href="apply.html">Apply</a></li>
-          <li><a href="about_us.html">About Us</a></li>
-        </ul>
-      </nav>
-    </header>
+<?php
+session_start();
+require_once("settings.php");
+?>
+<?php include "header.inc" ?>
 
     <main>
        <!-- Card 1 - Powering a cleaner Tomorrow -->
       <section id="company-value" class="contentBox" style="text-align: center;" aria-labelledby="powering-heading">
-
         <h2 id="powering-heading">Powering a Cleaner Tomorrow</h2>
-
         <p>
           Goobers is committed to delivering innovative renewable energy solutions.
         </p>
-
         <a href="jobs.html" id="companyvalue-button" aria-label="View available jobs and get involved">
           Get Involved
         </a>
-
       </section>
+
       <!-- Card 2 - Who We Are-->
       <section id="about-snapshot" class="contentBox" style="text-align: center;" aria-labelledby="about-heading">
-
         <h2 id="about-heading">Who We Are</h2>
-
         <p>
           We are a sustainable energy solutions company focused on promoting renewable technologies.
         </p>
-
         <a href="about_us.html" aria-label="Learn more about Goobers company">
           Learn More About Us
         </a>
-
       </section>
+
      <!-- Card 3 - Highlights-->
       <section id="highlights" class="contentBox" style="text-align: center;" aria-labelledby="highlights-heading">
-
         <h2 id="highlights-heading">What We Do</h2>
-
         <!-- Reference to image-->
         <img src="images/dam.png" alt="Dam used to source renewable energy">
-
         <div class="highlight-box">
           <h3>Renewable Technology</h3>
           <p>
             We design and implement energy systems tailored to community and industry needs.
           </p>
         </div>
+
   <!-- Addition to Card 3 - Our Practices-->
         <div class="highlight-box">
           <h3>Our Practices</h3>
@@ -99,6 +47,7 @@
           </p>
         </div>
       </section>
+
    <!-- Card 4 - Current Renewable Projects-->
       <section id="projects" class="contentBox" aria-labelledby="projects-heading">
         <h2 id="projects-heading" style="text-align: center;">Current Renewable Projects</h2>
@@ -170,20 +119,5 @@
       </section>
 
     </main>
- <!-- Footer -->
-    <footer aria-label="Footer information">
 
-      <hr>
-
-      <p>&copy; 2026 Goobers. All rights reserved.</p>
-
-      <p>
-        <a href="https://student-team-dxgbe8hd.atlassian.net/jira/software/projects/SCRUM/boards/1">Jira Project</a> |
-        <a href="https://github.com/Res-ro/goobers-applied-web-sustainable-energy">GitHub Repository</a> |
-        <a href="mailto:info@goobers.com">Email Us</a>
-      </p>
-
-    </footer>
-
-  </body>
-</html>
+<?php include "footer.inc" ?>
