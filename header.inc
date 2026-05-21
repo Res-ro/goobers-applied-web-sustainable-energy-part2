@@ -38,19 +38,3 @@
       </nav>
     </header>
 
-<?php
-$dbuser = "webuser";
-$dbpass = "password123";
-$conn = mysqli_connect($host, $dbuser, $dbpass, $dbname);
-
-if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["search"])) {
-
-	$search_query = $_GET["search"];
-
-	  # Warning, unsanitised input
-	$_SESSION['search'] = $search_query;
-	header("Location: search_result.php?q=" . urlencode($search_query));
-	exit();
-}
-
-?>

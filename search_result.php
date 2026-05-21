@@ -11,9 +11,8 @@ require_once("settings.php");
 # $dbpass = "password123";
 $conn = mysqli_connect($host, $dbuser, $dbpass, $dbname);
 
-if (isset($_GET['q'])) {
-
-	$search_query = $_GET['q'];
+if (isset($_GET['search']) && !empty($_GET['search'])) {
+    $search_query = trim($_GET['search']);
 
 	  # Warning, unsanitised input. UNSAFE!
 	$query = "SELECT * FROM jobs WHERE title LIKE '%$search_query%'";
