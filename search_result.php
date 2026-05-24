@@ -30,6 +30,17 @@ if (!$conn) {
 ?>
 
 <main>
+
+    <!-- persistent search bar, pre-filled with current search term -->
+    <form method="GET" action="search_result.php" id="jobs-search-form" aria-label="Job search">
+        <label for="jobs-search-input" class="visually-hidden">Search jobs</label>
+        <input type="text" id="jobs-search-input" name="search"
+               placeholder="Search jobs... e.g. Developer, Media"
+               maxlength="100"
+               aria-label="Search jobs input"
+               value="<?php echo htmlspecialchars($search_term); ?>">
+        <button type="submit">Search</button>
+    </form>
     <section>
         <h2 style="color: inherit; font-size: 2em; font-weight: bold;">Job Search Results</h2>
 
