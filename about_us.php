@@ -5,7 +5,8 @@ require_once("settings.php");
 <?php include "header.inc" ?>
 
     <main>
-        <!-- group name and class time -->
+
+        <!-- Group name and class time -->
         <section id="groupInfo" class="contentBox" aria-label="Group Information">
             <h2>Group Information</h2>
             <ul>
@@ -19,28 +20,27 @@ require_once("settings.php");
             </ul>
         </section>
 
-        <!-- member contributions loaded from the database -->
+        <!-- Member contributions loaded from the database -->
         <section id="contributions" class="contentBox" aria-label="Team Contributions">
             <h2>Introducing - the team.</h2>
-
             <?php
             $conn = mysqli_connect($host, $dbuser, $dbpass, $dbname);
 
             if (!$conn) {
                 echo "<p>Unable to load team contributions at this time.</p>";
             } else {
-                $result = mysqli_query($conn, "SELECT * FROM members ORDER BY id ASC");
+                $result = mysqli_query($conn, "SELECT * FROM about ORDER BY id ASC");
 
                 if (!$result || mysqli_num_rows($result) === 0) {
                     echo "<p>No member information available.</p>";
                 } else {
                     echo "<dl>";
                     while ($member = mysqli_fetch_assoc($result)) {
-                        $name   = htmlspecialchars($member['name']);
-                        $sid    = htmlspecialchars($member['student_id']);
-                        $quote  = htmlspecialchars($member['quote']);
-                        $part1  = htmlspecialchars($member['part1_contribution']);
-                        $part2  = htmlspecialchars($member['part2_contribution']);
+                        $name  = htmlspecialchars($member['name']);
+                        $sid   = htmlspecialchars($member['student_id']);
+                        $quote = htmlspecialchars($member['quote']);
+                        $part1 = htmlspecialchars($member['part1_contribution']);
+                        $part2 = htmlspecialchars($member['part2_contribution']);
                         ?>
                         <dt><?php echo $name; ?></dt>
                         <dd class="student-id">Student ID: <?php echo $sid; ?></dd>
@@ -100,6 +100,7 @@ require_once("settings.php");
                 </tr>
             </table>
         </section>
+
     </main>
 
 <?php include "footer.inc" ?>
