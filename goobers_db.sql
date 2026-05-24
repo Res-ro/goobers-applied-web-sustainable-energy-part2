@@ -79,13 +79,13 @@ VALUES
 );
 
 -- --------------------------------------------------------
--- Table: `members`
+-- Table: `about`
 -- Stores team member contributions for the About Us page.
 -- --------------------------------------------------------
 
-DROP TABLE IF EXISTS `members`;
+DROP TABLE IF EXISTS `about`;
 
-CREATE TABLE `members` (
+CREATE TABLE `about` (
   `id`                   INT(11)      NOT NULL AUTO_INCREMENT,
   `name`                 VARCHAR(50)  NOT NULL,
   `student_id`           VARCHAR(20)  NOT NULL,
@@ -97,7 +97,7 @@ CREATE TABLE `members` (
 
 -- part2_contribution values are placeholders — update once confirmed.
 
-INSERT INTO `members`
+INSERT INTO `about`
   (`name`, `student_id`, `quote`, `part1_contribution`, `part2_contribution`)
 VALUES
 (
@@ -119,7 +119,7 @@ VALUES
   "106515526",
   "SQLクエリがバーに入って2つのテーブルに近づき、『一緒に結合できますか？』と尋ねた (A SQL query goes into a bar, walks up to two tables and asks, 'Can I join you?')",
   "Worked on the Jobs page.",
-  "Part 2 contribution to be updated."
+  "Updated jobs and about page to be dynamically rendered and created a jobs and about table."
 ),
 (
   "Ned",
