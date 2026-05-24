@@ -11,7 +11,7 @@ require_once("settings.php");
         <p>
           Goobers is committed to delivering innovative renewable energy solutions.
         </p>
-        <a href="jobs.html" id="companyvalue-button" aria-label="View available jobs and get involved">
+        <a href="jobs.php" id="companyvalue-button" aria-label="View available jobs and get involved">
           Get Involved
         </a>
       </section>
@@ -22,7 +22,7 @@ require_once("settings.php");
         <p>
           We are a sustainable energy solutions company focused on promoting renewable technologies.
         </p>
-        <a href="about_us.html" aria-label="Learn more about Goobers company">
+        <a href="about_us.php" aria-label="Learn more about Goobers company">
           Learn More About Us
         </a>
       </section>
@@ -112,7 +112,7 @@ require_once("settings.php");
           Join our community now!
         </p>
 
-        <a href="apply.html" aria-label="Apply to join the Goobers team">
+        <a href="apply.php" aria-label="Apply to join the Goobers team">
           Apply Now
         </a>
 
