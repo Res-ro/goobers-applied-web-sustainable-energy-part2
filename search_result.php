@@ -31,16 +31,23 @@ if (!$conn) {
 
 <main>
 
-    <!-- persistent search bar, pre-filled with current search term -->
-    <form method="GET" action="search_result.php" id="jobs-search-form" aria-label="Job search">
+    <!--persistent search bar-->
+    <form method="GET" action="search_result.php" id="jobs-search-form"
+          aria-label="Job search"
+          style="display: flex; flex-direction: row; align-items: center; gap: 0; padding: 0; background: none; border: none; border-radius: 0; box-shadow: none; width: fit-content; margin: 1.5em auto;">
         <label for="jobs-search-input" class="visually-hidden">Search jobs</label>
         <input type="text" id="jobs-search-input" name="search"
                placeholder="Search jobs... e.g. Developer, Media"
                maxlength="100"
                aria-label="Search jobs input"
-               value="<?php echo htmlspecialchars($search_term); ?>">
-        <button type="submit">Search</button>
+               value="<?php echo htmlspecialchars($search_term); ?>"
+               style="padding: 8px 14px; border: none; border-radius: 999px 0 0 999px; background-color: rgba(255,255,255,0.8); font-size: 1em; outline: none; width: 250px; box-shadow: 0 10px 35px rgba(0,0,0,0.4);">
+        <button type="submit"
+                style="padding: 8px 18px; border: none; border-radius: 0 999px 999px 0; background-color: #8b6b13; color: white; font-size: 1em; font-weight: bold; cursor: pointer; box-shadow: 0 10px 35px rgba(0,0,0,0.4);">
+            Search
+        </button>
     </form>
+
     <section>
         <h2 style="color: inherit; font-size: 2em; font-weight: bold;">Job Search Results</h2>
 
@@ -59,16 +66,16 @@ if (!$conn) {
 
             <div class="job-cards-container">
                 <?php foreach ($jobs as $index => $job):
-                    $toggle_id        = "result-job" . ($index + 1) . "-toggle";
-                    $title            = htmlspecialchars($job['title']);
-                    $reference        = htmlspecialchars($job['reference']);
-                    $location         = htmlspecialchars($job['location']);
-                    $short_desc       = htmlspecialchars($job['short_description']);
-                    $salary           = number_format((int) $job['salary']);
-                    $reporting_line   = htmlspecialchars($job['reporting_line']);
+                    $toggle_id = "result-job" . ($index + 1) . "-toggle";
+                    $title = htmlspecialchars($job['title']);
+                    $reference = htmlspecialchars($job['reference']);
+                    $location = htmlspecialchars($job['location']);
+                    $short_desc = htmlspecialchars($job['short_description']);
+                    $salary = number_format((int) $job['salary']);
+                    $reporting_line = htmlspecialchars($job['reporting_line']);
                     $responsibilities = explode('|', $job['key_responsibilities']);
-                    $essential        = explode('|', $job['essential_requirements']);
-                    $preferable       = explode('|', $job['preferable_requirements']);
+                    $essential = explode('|', $job['essential_requirements']);
+                    $preferable = explode('|', $job['preferable_requirements']);
 
                     include "job_card.inc";
                 endforeach; ?>
@@ -76,6 +83,7 @@ if (!$conn) {
 
         <?php endif; ?>
     </section>
+
 </main>
 
 <?php include "footer.inc" ?>
