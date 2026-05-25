@@ -147,7 +147,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST" || !isset($_POST["ref_number"])) {
     '" . mysqli_real_escape_string($conn, $email) . "',
     '" . mysqli_real_escape_string($conn, $phone_number) . "',
     '" . mysqli_real_escape_string($conn, $skills) . "',
-    '" . mysqli_real_escape_string($conn, $other_skills) . "'
+    '" . mysqli_real_escape_string($conn, $other_skills) . "',
     '" . mysqli_real_escape_string($conn, $status) . "'
 )";
 
