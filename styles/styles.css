@@ -1,7 +1,17 @@
  /* MAIN STYLES / predominantly used by index.html */
-/* Some parts of this section of code were generated or adapted using ChatGPT (OpenAI, version GPT-5, October 2025). 
+/* Some parts of this section of code were generated or adapted using ChatGPT (OpenAI, version GPT-5, October 2025).
 All AI-generated code was reviewed and modified by the author before use.*/
- 
+
+ /* Colour references */
+:root {
+	--main-bg: #8b6b13;
+	--custom-white1: #faf8f2;
+	--custom-cream1: #f0e6cc;
+	--custom-peanut: #dab262;
+	--custom-goober: #f0e6cc;
+	--custom-gooberwhite: #faf8f2;
+}
+
  /* MAIN STYLES */
  @keyframes gradientShift {
      0% {
@@ -38,79 +48,79 @@ All AI-generated code was reviewed and modified by the author before use.*/
       padding: 10px;
       gap: 8px;
     }
-  
+
     #header h1 {
       line-height: normal;
       font-size: 1.4rem;
     }
-  
+
     #logo {
       width: 70px;
       margin-right: 0;
     }
-  
+
     #search-box {
       margin-left: 0;
       width: 100%;
     }
-  
+
     #search-box input {
       width: 100%;
     }
-  
+
     #links {
       width: 100%;
       border-radius: 12px;
       padding: 0 10px;
       box-sizing: border-box;
     }
-  
+
     #links ul {
       flex-wrap: wrap;
       justify-content: center;
       gap: 10px;
     }
-  
+
     main {
       width: 95%;
       padding: 10px;
     }
-  
+
     .contentBox {
       padding: 15px;
     }
-  
+
     form {
       width: 95%;
       box-sizing: border-box;
     }
-  
+
     .job-cards {
       width: 100%;
       margin: 2% 0;
       height: auto;
     }
-  
+
     table {
       font-size: 0.7rem;
     }
-  
+
     th, td {
       padding: 6px;
       font-size: 0.65rem;
     }
-  
+
     .modal-content {
       width: 95%;
       height: 85vh;
     }
-  
+
     footer {
       font-size: 0.85rem;
       padding: 10px;
     }
-  
-  
+
+
 /* AI-assisted refinement of background transition effects for smoother user experience. (ChatGPT GPT-5, October 2025).*/
 /* MAIN LINK STYLING */
  main a {
@@ -331,7 +341,7 @@ main {
   border-collapse: collapse;
   background-color: #ffffff;
   table-layout: fixed;
-  word-wrap: break-word; 
+  word-wrap: break-word;
 }
 
 
@@ -341,7 +351,7 @@ th, td {
   border: 2px solid #8b6b13;
   text-align: center;
   font-size: 0.75rem;
-  word-break: keep-all; 
+  word-break: keep-all;
 }
 
 
@@ -531,7 +541,7 @@ th, td {
      width: 100%;
      height: 100%;
      cursor: pointer;
-     
+
 }
  .modal-toggle:checked ~ .job-modal {
      opacity: 1;

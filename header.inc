@@ -34,7 +34,7 @@
           <li><a href="jobs.php">Jobs</a></li>
           <li><a href="apply.php">Apply</a></li>
           <li><a href="about_us.php">About Us</a></li>
+          <li><a href="sign_in.php">Sign in</a></li>
         </ul>
       </nav>
     </header>
-
