@@ -9,35 +9,34 @@ require_once("settings.php");
     <section class="application-form" aria-labelledby="form-title">
       <h2 id="form-title">Job Application Form</h2>
 
-      <form action="process_eoi.php" method="post" aria-label="Job Application Form">
+      <form action="process_eoi.php" method="post" novalidate aria-label="Job Application Form">
 
         <!-- job reference number -->
         <div class="reference">
           <label for="ref_number">Job Reference Number</label>
-          <input type="text" id="ref_number" name="ref_number" pattern="\w{5}"
-                 maxlength="5" placeholder="12345" aria-required="true" required><br>
+          <input type="text" id="ref_number" name="ref_number" placeholder="12345" aria-required="true"><br>
         </div>
 
         <!-- Personal Info -->
         <div class="personal">
           <label for="first_name">First Name</label>
           <input type="text" id="first_name" name="first_name"
-                 pattern=".*" maxlength="20" placeholder="John" aria-required="true" required><br>
+                 placeholder="John" aria-required="true"><br>
 
           <label for="last_name">Last Name</label>
           <input type="text" id="last_name" name="last_name"
-                 pattern=".*" maxlength="20" placeholder="Smith" aria-required="true" required><br>
+                 placeholder="Smith" aria-required="true"><br>
 
           <label for="date_of_birth">Date of Birth</label>
           <input type="text" id="date_of_birth" name="date_of_birth"
-                 pattern="[0-3]?[1-9]/[0-3]?[1-9]/[0-9]{4}" placeholder="dd/mm/yyyy" aria-required="true" required><br>
+                 placeholder="dd/mm/yyyy" aria-required="true"><br>
 
           <fieldset aria-labelledby="gender-legend">
             <legend id="gender-legend"><strong>Gender</strong></legend>
-            <input type="radio" name="gender" id="male" value="male" aria-required="true" required>
+            <input type="radio" name="gender" id="male" value="male" aria-required="true">
             <label for="male">Male</label>
 
-            <input type="radio" name="gender" id="female" value="female" aria-required="true" required>
+            <input type="radio" name="gender" id="female" value="female" aria-required="true">
             <label for="female">Female</label>
           </fieldset>
         </div>
@@ -46,14 +45,14 @@ require_once("settings.php");
         <div class="address">
           <label for="street_address">Street Address</label>
           <input type="text" id="street_address" name="street_address"
-                 pattern=".*" maxlength="40" placeholder="123 Goober Street" aria-required="true" required><br>
+                 placeholder="123 Goober Street" aria-required="true"><br>
 
           <label for="suburb_or_town">Suburb/Town</label>
           <input type="text" id="suburb_or_town" name="suburb_or_town"
-                 pattern="[A-Za-z]{2,40}" maxlength="40" placeholder="Hawthorn" aria-required="true" required><br>
+                 placeholder="Hawthorn" aria-required="true"><br>
 
           <label for="state">State</label>
-          <select name="state" id="state" aria-required="true" required>
+          <select name="state" id="state" aria-required="true">
             <option value="">-- Select a State --</option>
             <option value="VIC">VIC</option>
             <option value="NSW">NSW</option>
@@ -67,17 +66,17 @@ require_once("settings.php");
 
           <label for="postcode">Postcode</label>
           <input type="text" id="postcode" name="postcode"
-                 pattern="\d{4}" maxlength="4" placeholder="0000" aria-required="true" required><br>
+                 placeholder="0000" aria-required="true"><br>
         </div>
 
         <!-- Contact details -->
         <div class="contact">
           <label for="email">Email</label>
-          <input type="email" name="email" id="email" aria-required="true" required placeholder="johnsmith@mymail.com"><br>
+          <input type="text" name="email" id="email" aria-required="true" placeholder="johnsmith@mymail.com"><br>
 
           <label for="phone_number">Phone Number</label>
-          <input type="tel" name="phone_number" id="phone_number"
-                 pattern="\d{3,4}\s?\d{3,4}\s?\d{3}" maxlength="12" aria-required="true" required placeholder="0000 000 000"><br>
+          <input type="text" name="phone_number" id="phone_number"
+                 aria-required="true" placeholder="0000 000 000"><br>
         </div>
 
         <!-- Skills info -->

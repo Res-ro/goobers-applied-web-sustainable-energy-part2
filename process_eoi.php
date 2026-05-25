@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST" || !isset($_POST["ref_number"])) {
     $first_name      = sanitise_input($_POST["first_name"]);
     $last_name       = sanitise_input($_POST["last_name"]);
     $date_of_birth   = sanitise_input($_POST["date_of_birth"]);
-    $gender          = sanitise_input($_POST["gender"]);
+    $gender          = sanitise_input($_POST["gender"] ?? "");
     $street_address  = sanitise_input($_POST["street_address"]);
     $suburb_or_town  = sanitise_input($_POST["suburb_or_town"]);
     $state           = sanitise_input($_POST["state"]);
@@ -86,6 +86,8 @@ if ($_SERVER["REQUEST_METHOD"] != "POST" || !isset($_POST["ref_number"])) {
 
 // retrieves the selected option(s) in the 'skills' section of the Apply form by using arrays
     $skills = "";
+
+    $skills_posted = $_POST["skills"] ?? [];
 
     if (isset($_POST["skills"][0])) {
         $skills .= $_POST["skills"][0];
