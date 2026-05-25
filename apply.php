@@ -106,7 +106,7 @@ require_once("settings.php");
 
         <div class="status">
             <label for="status">Application Status</label>
-          <select name="status" id="status" required>
+          <select name="status" id="status">
             <option value="New" selected>New</option>
             <option value="Current">Current</option>
             <option value="Final">Final</option>
