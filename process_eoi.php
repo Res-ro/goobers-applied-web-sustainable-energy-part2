@@ -62,12 +62,69 @@ if ($_SERVER["REQUEST_METHOD"] != "POST" || !isset($_POST["ref_number"])) {
     if (empty($phone_number))   $errors[] = "Phone number is required.";
 
 
-    // Format Checks
+    // Format Checks / Validation
+    // Job Reference Number check (Exactly 5 alphanumeric characters)
+    if (!empty($ref_number) && !preg_match("/^[a-zA-Z0-9]{5}$/", $ref_number)) {
+        $errors[] = "Job reference number must be exactly 5 alphanumeric characters.";
+    }
+
+    // First Name check
+    if (!empty($first_name)) {
+        if (!preg_match("/^[a-zA-Z ]+$/", $first_name)) {
+            $errors[] = "First name must contain only alphabetical characters.";
+        } else if (strlen($first_name) > 20) {
+            $errors[] = "First name cannot exceed 20 characters.";
+        }
+    }
+
+    // Last Name check
+    if (!empty($last_name)) {
+        if (!preg_match("/^[a-zA-Z ]+$/", $last_name)) {
+            $errors[] = "Last name must contain only alphabetical characters.";
+        } else if (strlen($last_name) > 20) {
+            $errors[] = "Last name cannot exceed 20 characters.";
+        }
+    }
+
+    // Email format check
     if (!empty($email) && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $errors[] = "Invalid email format.";
     }
+
+    // Suburb/Town check (max 40 characters)
+    if (!empty($suburb_or_town) && strlen($suburb_or_town) > 40) {
+        $errors[] = "Suburb/Town cannot exceed 40 characters.";
+    }
+
+    // Postcode check (Exactly 4 digits & Numeric)
     if (!empty($postcode) && !preg_match("/^[0-9]{4}$/", $postcode)) {
         $errors[] = "Postcode must be exactly 4 digits.";
+    }
+
+    // Phone number check (8 to 12 digits, spaces being allowed)
+    if (!empty($phone_number) && !preg_match("/^[0-9 ]{8,12}$/", $phone_number)) {
+        $errors[] = "Phone number must contain only 8 to 12 digits (spaces allowed).";
+    }
+
+    if (!empty($date_of_birth)) {
+        // Pattern / Format check for DOB (dd/mm/yyyy)
+        if (!preg_match("/^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/", $date_of_birth, $matches)) {
+            $errors[] = "Date of birth must be in the format dd/mm/yyyy.";
+        } else {
+            // Convert the DOB into integers for day, month and year (Allows for further validation checks)
+            $day   = (int)$matches[1];
+            $month = (int)$matches[2];
+            $year  = (int)$matches[3];
+
+            // Verify it's a real calendar date (rejects 50/11/2009 for example)
+            if (!checkdate($month, $day, $year)) {
+                $errors[] = "The date of birth provided is not a valid calendar date.";
+            } 
+            // Ensure they aren't born in the future or be 200 years old
+            else if ($year > 2026 || $year < 1900) {
+                $errors[] = "Please enter a realistic year of birth.";
+            }
+        }
     }
 
 
@@ -91,19 +148,19 @@ if ($_SERVER["REQUEST_METHOD"] != "POST" || !isset($_POST["ref_number"])) {
     $skills_posted = $_POST["skills"] ?? [];
 
     if (isset($_POST["skills"][0])) {
-        $skills .= $_POST["skills"][0];
+        $skills .= $skills_posted[0];
     }
     if (isset($_POST["skills"][1])) {
-        $skills .= ", " . $_POST["skills"][1];
+        $skills .= ", " . $skills_posted[1];
     }
     if (isset($_POST["skills"][2])) {
-        $skills .= ", " . $_POST["skills"][2];
+        $skills .= ", " . $skills_posted[2];
     }
     if (isset($_POST["skills"][3])) {
-        $skills .= ", " . $_POST["skills"][3];
+        $skills .= ", " . $skills_posted[3];
     }
     if (isset($_POST["skills"][4])) {
-        $skills .= ", " . $_POST["skills"][4];
+        $skills .= ", " . $skills_posted[4];
     }
 
 
