@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST" || !isset($_POST["ref_number"])) {
 //     header("Location: apply.php");
 //     exit();
 // }
-    $conn = mysqli_connect($host, $user, $pwd, $sql_db);
+  $conn = mysqli_connect($host, $dbuser, $dbpass, $dbname);
 
     if (!$conn) {
         die("Connection failed");
