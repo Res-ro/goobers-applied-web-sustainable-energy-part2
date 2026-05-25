@@ -1,3 +1,7 @@
+/* MAIN STYLES / predominantly used by index.html */
+/* Some parts of this section of code were generated or adapted using ChatGPT (OpenAI, version GPT-5, October 2025).
+All AI-generated code was reviewed and modified by the author before use.*/
+
 
 :root {
 	/* custom colours */
@@ -10,12 +14,22 @@
 	--goobers-dark: #4d3900;
 	--goobers-black: #1a1300;
 	--goobers-brown: #4d2600;
-	--goobers-red: #990010;
+	--goobers-red: #e90010;
 
 	/* font families */
 	--font-main: Verdana, Geneva;
 }
 
+
+/* =========================
+   LOGIN CSS
+========================= */
+
+.login-main {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
 
 .login-container {
 	border: 6px solid var(--goobers-main);
@@ -40,7 +54,6 @@
 	text-align: center;
 }
 
-
 .item-1 {
 	grid-row: 1 / 5;
 	grid-column: 1 / 4;
@@ -49,13 +62,9 @@
 .item-2 {
 	grid-row: 1 / 5;
 	grid-column: 4 / 7;
-	margin-right: 20px;
+	/* margin-right: 20px; */
 }
 
-.item-3 {
-	grid-row: 5 / 7;
-	grid-column: 1 / 7;
-}
 
 form {
 	display: flex;
@@ -71,10 +80,10 @@ form {
 }
 
 .submit-container{
-	border-radius: 15px;
-	display: grid;
-	justify-items: end;
-	padding: 5px;
+	/* border-radius: 15px; */
+	display: flex;
+	align-items: center;
+	width: 100%;
 }
 
 .form-row {
@@ -82,21 +91,23 @@ form {
 	padding: 0.5em;
 }
 
-
 input[type="text"],
 input[type="password"] {
 	margin-left: 5em;
 }
 
 input[type="submit"] {
-	margin-right: 5em;
+	margin-left: auto;
+	margin-right: 20px;
 	border-radius: 0;
 	padding: 0.3em;
 	width: 5em;
 }
 
-.logo {
-	margin-bottom: 0.3em;
+.logo img{
+	margin-top: 0.5em;
+	height: 60%;
+	width: 60%;
 }
 
 .sign-in-message h2 {
@@ -107,4 +118,273 @@ input[type="submit"] {
 .sign-in-message p {
 	font-size: 0.58em;
 	margin: 0;
+}
+
+.error-message {
+	color: var(--goobers-red);
+	font-size: 0.9rem;
+	margin-left: auto;
+	margin-right: 20px;
+	text-align: right;
+}
+
+
+@keyframes gradientShift {
+	0% { background-position: 0% 50%; }
+	50% { background-position: 100% 50%; }
+	100% { background-position: 0% 50%; }
+}
+
+body, main {
+	width: 100%;
+	height: 100vh;
+	margin: 0;
+	padding: 0;
+	font-family: var(--font-main);
+	background: linear-gradient(135deg, #faf8f2, #f0e6cc, #dab262, #f0e6cc, #faf8f2);
+	background-size: 400% 400%;
+	animation: gradientShift 16s ease infinite;
+}
+
+
+/*--------------------*/
+
+#header {
+	flex-wrap: wrap;
+	padding: 10px;
+	gap: 8px;
+}
+
+#header h1 {
+	line-height: normal;
+	font-size: 1.4rem;
+}
+
+#logo {
+	width: 70px;
+	margin-right: 0;
+}
+
+#search-box {
+	margin-left: 0;
+	width: 100%;
+}
+
+#search-box input {
+	width: 100%;
+}
+
+#links {
+	width: 100%;
+	border-radius: 12px;
+	padding: 0 10px;
+	box-sizing: border-box;
+}
+
+#links ul {
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 10px;
+}
+
+main {
+	width: 95%;
+	padding: 10px;
+}
+
+.contentBox {
+	padding: 15px;
+}
+
+form {
+	width: 95%;
+	box-sizing: border-box;
+}
+
+.job-cards {
+	width: 100%;
+	margin: 2% 0;
+	height: auto;
+}
+
+table {
+	font-size: 0.7rem;
+}
+
+th, td {
+	padding: 6px;
+	font-size: 0.65rem;
+}
+
+.modal-content {
+	width: 95%;
+	height: 85vh;
+}
+
+footer {
+	font-size: 0.85rem;
+	padding: 10px;
+}
+
+
+
+/* Logo */
+#logo {
+	width: 100px;
+	height: auto;
+	float: left;
+	margin-right: -8px;
+}
+
+/* Visually hidden */
+.visually-hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
+}
+
+#highlights img {
+	max-width: 80%;
+	height: auto;
+	border-radius: 10px;
+	display: block;
+	margin: 0 auto 20px auto;
+}
+
+#logo:hover {
+	transform: scale(1.1) rotate(-3deg);
+}
+
+/* HEADER */
+#header {
+	display: flex;
+	align-items: center;
+	padding: 2px 20px;
+	gap: 2px;
+}
+
+#header h1 {
+	line-height: 100px;
+	margin: 0;
+	padding: 0;
+}
+
+main {
+	width: 80%;
+	margin: 30px auto;
+	padding: 20px;
+	background: transparent;
+}
+
+/* Search box */
+#search-box {
+	display: inline-flex;
+	align-items: center;
+	border-radius: 25px;
+	overflow: hidden;
+	box-shadow: 0 10px 35px rgba(0, 0, 0, 0.4);
+	background: rgba(255, 255, 255, 0.8);
+	margin: 0;
+	margin-left: auto;
+	padding: 0;
+	border: none;
+	gap: 0;
+	width: auto;
+	flex-direction: row;
+	box-sizing: border-box;
+}
+
+#search-box input {
+	border: none;
+	padding: 8px 14px;
+	background: transparent;
+	outline: none;
+	font-family: inherit;
+	width: 160px;
+	min-width: 60px;
+}
+
+/* Navbar */
+#links {
+	margin: 0 auto 20px auto;
+	width: fit-content;
+	position: relative;
+	background: rgba(255, 255, 255, 0.85);
+	backdrop-filter: blur(8px);
+	border-radius: 50px;
+	padding: 0 30px;
+	box-shadow: 0 4px 20px rgba(139, 107, 19, 0.2);
+	border: 1px solid rgba(201, 168, 76, 0.3);
+}
+
+#links ul {
+	list-style: none;
+	display: flex;
+	justify-content: center;
+	gap: 20px;
+	margin: 0;
+	padding: 0;
+	cursor: pointer;
+}
+
+#links li {
+	padding: 10px 0;
+}
+
+#links a {
+	text-decoration: none;
+	font-weight: bold;
+	color: black;
+	position: relative;
+	padding-bottom: 4px;
+}
+
+#links a::after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 0;
+	height: 2px;
+	background-color: #8b6b13;
+	transition: width 0.3s ease;
+}
+
+#links a:hover::after {
+	width: 100%;
+}
+
+#links a:hover {
+	color: #8b6b13;
+}
+
+/* footer */
+footer {
+	text-align: center;
+	padding: 15px;
+	margin-top: 30px;
+	color: rgb(0, 0, 0);
+}
+
+/* ABOUT / APPLY / JOBS CSS */
+.contentBox {
+	margin-bottom: 40px;
+	padding: 25px;
+	border-radius: 15px;
+	background-color: rgba(255, 255, 255, 0.75);
+	border: 2px solid rgba(255, 255, 255, 0.4);
+	transition: background-color 0.5s ease, border-color 0.5s ease, transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.contentBox:hover {
+	background-color: rgba(255, 255, 255, 0.9);
+	border: 2px solid rgba(201, 168, 76, 0.5);
+	transform: translateY(-4px);
+	box-shadow: 0 8px 20px rgba(139, 107, 19, 0.15);
 }
