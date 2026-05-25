@@ -42,6 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST" || !isset($_POST["ref_number"])) {
     $email           = sanitise_input($_POST["email"]);
     $phone_number    = sanitise_input($_POST["phone_number"]);
     $other_skills    = sanitise_input($_POST["other_skills"]);
+    $status = sanitise_input($_POST["status"]);
 
 
     // Server-side validation rules, checks if any of the required fields are empty and adds an error message to the $errors array if they are
@@ -130,7 +131,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST" || !isset($_POST["ref_number"])) {
     $sql = "INSERT INTO eoi ( 
     ref_number, first_name, last_name, date_of_birth, gender,
     street_address, suburb_or_town, state, postcode,
-    email, phone_number, skills, other_skills
+    email, phone_number, skills, other_skills, status
     )  
     
     VALUES (
@@ -147,6 +148,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST" || !isset($_POST["ref_number"])) {
     '" . mysqli_real_escape_string($conn, $phone_number) . "',
     '" . mysqli_real_escape_string($conn, $skills) . "',
     '" . mysqli_real_escape_string($conn, $other_skills) . "'
+    '" . mysqli_real_escape_string($conn, $status) . "'
 )";
 
     $result = mysqli_query($conn, $sql);
