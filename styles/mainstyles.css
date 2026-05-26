@@ -1,0 +1,22 @@
+ /* Colour references */
+:root {
+	/* colours */
+	--main-bg: #dab262;
+	--custom-white1: #faf8f2;
+	--custom-cream1: #f0e6cc;
+	--custom-peanut:#8b6b13;
+	--custom-goober: #f0e6cc;
+	--custom-gooberwhite: #faf8f2;
+	/* fonts */
+	--main-font: Verdana, Geneva, serif;
+}
+
+
+ body, main {
+     width: 100%;
+     margin: 0;
+     padding: 0;
+     font-family: var(--main-font);
+     background: var(--main-bg);
+     background-size: 400% 400%;
+}
