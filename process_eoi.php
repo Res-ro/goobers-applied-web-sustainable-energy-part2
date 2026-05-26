@@ -189,48 +189,23 @@ if ($_SERVER["REQUEST_METHOD"] != "POST" || !isset($_POST["ref_number"])) {
 
     mysqli_query($conn, $table_sql);
 
-// inserts values into the created table
-    $sql = "INSERT INTO eoi ( 
-    ref_number, first_name, last_name, date_of_birth, gender,
-    street_address, suburb_or_town, state, postcode,
-    email, phone_number, skills, other_skills, status
-    )  
+// inserts values into the created table, uses statement binding to protect the database
+    $stmt = $conn->prepare("
+        INSERT INTO eoi ( ref_number, first_name, last_name, date_of_birth, gender, street_address, suburb_or_town, state, postcode,email, phone_number, skills, other_skills, status
+    )
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-    VALUES (
-    '" . mysqli_real_escape_string($conn, $ref_number) . "', 
-    '" . mysqli_real_escape_string($conn, $first_name) . "',
-    '" . mysqli_real_escape_string($conn, $last_name) . "',
-    '" . mysqli_real_escape_string($conn, $date_of_birth) . "',
-    '" . mysqli_real_escape_string($conn, $gender) . "',
-    '" . mysqli_real_escape_string($conn, $street_address) . "',
-    '" . mysqli_real_escape_string($conn, $suburb_or_town) . "',
-    '" . mysqli_real_escape_string($conn, $state) . "',
-    '" . mysqli_real_escape_string($conn, $postcode) . "',
-    '" . mysqli_real_escape_string($conn, $email) . "',
-    '" . mysqli_real_escape_string($conn, $phone_number) . "',
-    '" . mysqli_real_escape_string($conn, $skills) . "',
-    '" . mysqli_real_escape_string($conn, $other_skills) . "',
-    '" . mysqli_real_escape_string($conn, $status) . "'
-)";
-        // The . is used to build one big string | join strings together
-        // mysqli_real_escape_string is used to escape special characters in the input data to prevent SQL injection attacks
-        // (Makes them safe for the database as they're treated as plain text rather than code)
+    $stmt->bind_param("ssssssssssssss",$ref_number, $first_name, $last_name, $date_of_birth,$gender, $street_address, $suburb_or_town,$state, $postcode, $email, $phone_number, $skills, $other_skills, $status);
 
-
-    $result = mysqli_query($conn, $sql); // Checks if the query was successful, stores in result variable
-
-    // shows the EOI number to the user, if the submission was successful
-    if ($result) {
-        $eoi_number = mysqli_insert_id($conn); // Retrieves the auto-generated EOInumber for added record
-
+    if ($stmt->execute()) {
+        $eoi_number = $conn->insert_id;
         echo "<h1>Application Successful</h1>";
         echo "<p>EOI Number: " . $eoi_number . "</p>";
-
-    } else {
-        echo "Error";
+    }   
+    else {
+    echo "Error: " . $stmt->error;
     }
 
-    mysqli_close($conn); // Ends the connection to the database
-
+mysqli_close($conn);
 
 ?>
