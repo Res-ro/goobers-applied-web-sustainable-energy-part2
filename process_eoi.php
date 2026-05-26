@@ -7,9 +7,9 @@ require_once("settings.php");
 
  // Function created to handle 'Trim, strip slashes and escape HTML'
 function sanitise_input($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
+    $data = trim($data); // Removes extra spaces
+    $data = stripslashes($data); // Removes backlashes from input data
+    $data = htmlspecialchars($data); // converts special HTML characters to harmless text to prevent browser from treating it like code. Prevents XSS attacks
     return $data;
 }
 
@@ -42,11 +42,11 @@ if ($_SERVER["REQUEST_METHOD"] != "POST" || !isset($_POST["ref_number"])) {
     $email           = sanitise_input($_POST["email"]);
     $phone_number    = sanitise_input($_POST["phone_number"]);
     $other_skills    = sanitise_input($_POST["other_skills"]);
-    $status = sanitise_input($_POST["status"]);
+    $status          = sanitise_input($_POST["status"]);
 
 
     // Server-side validation rules, checks if any of the required fields are empty and adds an error message to the $errors array if they are
-    
+    // Errors is an empty array that stores validation error messages
     $errors = [];
 
     if (empty($ref_number))     $errors[] = "Job reference number is required.";
@@ -64,13 +64,13 @@ if ($_SERVER["REQUEST_METHOD"] != "POST" || !isset($_POST["ref_number"])) {
 
     // Format Checks / Validation
     // Job Reference Number check (Exactly 5 alphanumeric characters)
-    if (!empty($ref_number) && !preg_match("/^[a-zA-Z0-9]{5}$/", $ref_number)) {
+    if (!empty($ref_number) && !preg_match("/^[a-zA-Z0-9]{5}$/", $ref_number)) { // preg_match is a php function that checks if a string matches required pattern
         $errors[] = "Job reference number must be exactly 5 alphanumeric characters.";
     }
 
     // First Name check
     if (!empty($first_name)) {
-        if (!preg_match("/^[a-zA-Z ]+$/", $first_name)) {
+        if (!preg_match("/^[a-zA-Z ]+$/", $first_name)) { // preg_match is a php function that checks if a string matches required pattern
             $errors[] = "First name must contain only alphabetical characters.";
         } else if (strlen($first_name) > 20) {
             $errors[] = "First name cannot exceed 20 characters.";
@@ -79,7 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST" || !isset($_POST["ref_number"])) {
 
     // Last Name check
     if (!empty($last_name)) {
-        if (!preg_match("/^[a-zA-Z ]+$/", $last_name)) {
+        if (!preg_match("/^[a-zA-Z ]+$/", $last_name)) { // preg_match is a php function that checks if a string matches required pattern
             $errors[] = "Last name must contain only alphabetical characters.";
         } else if (strlen($last_name) > 20) {
             $errors[] = "Last name cannot exceed 20 characters.";
@@ -87,6 +87,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST" || !isset($_POST["ref_number"])) {
     }
 
     // Email format check
+    // FILTER_VALIDATE_EMAIL is a built in php function that checks if an email address is valid
     if (!empty($email) && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $errors[] = "Invalid email format.";
     }
@@ -97,7 +98,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST" || !isset($_POST["ref_number"])) {
     }
 
     // Postcode check (Exactly 4 digits & Numeric)
-    if (!empty($postcode) && !preg_match("/^[0-9]{4}$/", $postcode)) {
+    if (!empty($postcode) && !preg_match("/^[0-9]{4}$/", $postcode)) { // preg_match is a php function that checks if a string matches required pattern
         $errors[] = "Postcode must be exactly 4 digits.";
     }
 
@@ -112,16 +113,16 @@ if ($_SERVER["REQUEST_METHOD"] != "POST" || !isset($_POST["ref_number"])) {
             $errors[] = "Date of birth must be in the format dd/mm/yyyy.";
         } else {
             // Convert the DOB into integers for day, month and year (Allows for further validation checks)
-            $day   = (int)$matches[1];
-            $month = (int)$matches[2];
-            $year  = (int)$matches[3];
+            $day   = (int)$matches[1]; // Splits date into day (Eg. 12/11/2000 would be 12)
+            $month = (int)$matches[2]; // Splits date into month (Eg. 12/11/2000 would be 11)
+            $year  = (int)$matches[3]; // Splits date into year (Eg. 12/11/2000 would be 2000)
 
             // Verify it's a real calendar date (rejects 50/11/2009 for example)
-            if (!checkdate($month, $day, $year)) {
+            if (!checkdate($month, $day, $year)) { // checkdate is an american function in php. Required to be in month, day, year format for database.
                 $errors[] = "The date of birth provided is not a valid calendar date.";
             } 
             // Ensure they aren't born in the future or be 200 years old
-            else if ($year > 2026 || $year < 1900) {
+            else if ($year > 2026 || $year < 1900) { // || means OR in php
                 $errors[] = "Please enter a realistic year of birth.";
             }
         }
@@ -132,12 +133,12 @@ if ($_SERVER["REQUEST_METHOD"] != "POST" || !isset($_POST["ref_number"])) {
     if (!empty($errors)) {
         echo "<h1>Application Error</h1>";
         echo "<ul>";
-        foreach ($errors as $error) {
+        foreach ($errors as $error) { // Loops through each error in the $errors array and displays it as a list item in an unordered list
             echo "<li>" . $error . "</li>";
         }
         echo "</ul>";
         echo "<p><a href='apply.php'>Go back and fix the form</a></p>";
-        mysqli_close($conn);
+        mysqli_close($conn); // $conn is a variable that stores the database connection
         exit();
     }
 
@@ -147,6 +148,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST" || !isset($_POST["ref_number"])) {
 
     $skills_posted = $_POST["skills"] ?? [];
 
+    // .= is used to append to a string rather than overwrite it. Puts everything on the same line in the database
     if (isset($_POST["skills"][0])) {
         $skills .= $skills_posted[0];
     }
@@ -166,6 +168,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST" || !isset($_POST["ref_number"])) {
 
     // table properties, also creates a table, if it is not found in the database
     // CREATE TABLE IF NOT EXISTS sourced from https://www.geeksforgeeks.org/sql/create-a-table-if-it-doesn-t-exist-in-sql/ Accessed: Wed 20 May 2026
+    // Primary Key automatically gives each record a new number
     $table_sql = "CREATE TABLE IF NOT EXISTS eoi (  
         EOInumber INT AUTO_INCREMENT PRIMARY KEY,
         ref_number VARCHAR(5),
@@ -209,12 +212,16 @@ if ($_SERVER["REQUEST_METHOD"] != "POST" || !isset($_POST["ref_number"])) {
     '" . mysqli_real_escape_string($conn, $other_skills) . "',
     '" . mysqli_real_escape_string($conn, $status) . "'
 )";
+        // The . is used to build one big string | join strings together
+        // mysqli_real_escape_string is used to escape special characters in the input data to prevent SQL injection attacks
+        // (Makes them safe for the database as they're treated as plain text rather than code)
 
-    $result = mysqli_query($conn, $sql);
+
+    $result = mysqli_query($conn, $sql); // Checks if the query was successful, stores in result variable
 
     // shows the EOI number to the user, if the submission was successful
     if ($result) {
-        $eoi_number = mysqli_insert_id($conn);
+        $eoi_number = mysqli_insert_id($conn); // Retrieves the auto-generated EOInumber for added record
 
         echo "<h1>Application Successful</h1>";
         echo "<p>EOI Number: " . $eoi_number . "</p>";
@@ -223,7 +230,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST" || !isset($_POST["ref_number"])) {
         echo "Error";
     }
 
-    mysqli_close($conn);
+    mysqli_close($conn); // Ends the connection to the database
 
 
 ?>
