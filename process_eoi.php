@@ -195,9 +195,9 @@ if ($_SERVER["REQUEST_METHOD"] != "POST" || !isset($_POST["ref_number"])) {
     street_address, suburb_or_town, state, postcode,
     email, phone_number, skills, other_skills, status
     )  
-    
+
     VALUES (
-    '" . mysqli_real_escape_string($conn, $ref_number) . "',
+    '" . mysqli_real_escape_string($conn, $ref_number) . "', 
     '" . mysqli_real_escape_string($conn, $first_name) . "',
     '" . mysqli_real_escape_string($conn, $last_name) . "',
     '" . mysqli_real_escape_string($conn, $date_of_birth) . "',
