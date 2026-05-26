@@ -189,20 +189,28 @@ if ($_SERVER["REQUEST_METHOD"] != "POST" || !isset($_POST["ref_number"])) {
 
     mysqli_query($conn, $table_sql);
 
-// inserts values into the created table, uses statement binding to protect the database
+// Inserts the submitted form values into the "eoi" table
+// Uses prepared statements with placeholders (?) to help protect against SQL injection attacks
     $stmt = $conn->prepare("
         INSERT INTO eoi ( ref_number, first_name, last_name, date_of_birth, gender, street_address, suburb_or_town, state, postcode,email, phone_number, skills, other_skills, status
     )
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
+    // Binds the PHP variables to the placeholders in the SQL statement
+    // "s" means the value is treated as a string
+    // The variables are matched in the same order as the VALUES placeholders
     $stmt->bind_param("ssssssssssssss",$ref_number, $first_name, $last_name, $date_of_birth,$gender, $street_address, $suburb_or_town,$state, $postcode, $email, $phone_number, $skills, $other_skills, $status);
 
+
+
+    // Executes the prepared SQL statement
     if ($stmt->execute()) {
         $eoi_number = $conn->insert_id;
         echo "<h1>Application Successful</h1>";
         echo "<p>EOI Number: " . $eoi_number . "</p>";
     }   
     else {
+     // Displays an error message if the insert fails
     echo "Error: " . $stmt->error;
     }
 
