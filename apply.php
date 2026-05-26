@@ -104,15 +104,6 @@ require_once("settings.php");
             </fieldset>
           </div>
 
-        <div class="status">
-            <label for="status">Application Status</label>
-          <select name="status" id="status">
-            <option value="New" selected>New</option>
-            <option value="Current">Current</option>
-            <option value="Final">Final</option>
-          </select>
-        </div>
-
           <div class="other-grid">
             <label for="other_skills">Other Skills:</label><br>
             <textarea name="other_skills" id="other_skills" rows="5" cols="65"
