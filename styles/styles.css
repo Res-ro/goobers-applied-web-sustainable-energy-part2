@@ -359,6 +359,13 @@ header.header {
 	padding: 10px;
 	border-radius: 10px;
 }
+.contentBox figure img {
+	max-width: 100%;
+	height: auto;
+}
+.contentBox figcaption {
+	color: var(--custom-peanut);
+}
 
 /* table configuration */
 .contentBox table {
@@ -388,10 +395,6 @@ header.header {
 	margin-bottom: 10px;
 	color: var(--custom-peanut);
 }
-.contentBox figure img {
-	max-width: 100%;
-	height: auto;
-}
 .contentBox img {
 	max-width: 80%;
 	height: auto;
@@ -417,6 +420,10 @@ header.header {
      color: var(--custom-white);
      transform: translateY(-2px);
      box-shadow: 0 4px 12px var(--shadow-peanut-soft);
+}
+
+.contentBox img #groupPhoto {
+	border: none;
 }
 
 
