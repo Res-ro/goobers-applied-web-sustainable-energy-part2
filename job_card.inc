@@ -13,13 +13,14 @@
 //   $essential        — array of essential requirement strings
 //   $preferable       — array of preferable requirement strings
 ?>
+
+
 <div class="job-cards">
     <div class="job-card-contents">
         <input type="checkbox" id="<?php echo $toggle_id; ?>" class="modal-toggle" />
-        <!--WAVE Multiple Form Label Errors due to required Modal Implementation-->
 
         <label for="<?php echo $toggle_id; ?>" class="job-card">
-            <span style="display: block; color: #8b6b13; font-size: 1.5em; font-weight: bold; margin: 0.67em 0;">
+            <span id="span-title">
                 <?php echo $title; ?>
             </span>
             <span class="location" style="display: block;">
@@ -32,7 +33,6 @@
 
         <div class="job-modal">
             <label for="<?php echo $toggle_id; ?>" class="modal-bg" aria-label="modal background"></label>
-            <!--Empty Label uses aria-label to avoid WAVE error but produces w3validator instead-->
             <div class="modal-content">
 
                 <h2><?php echo $title; ?></h2>

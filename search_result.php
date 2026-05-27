@@ -35,7 +35,7 @@ if (!$conn) {
     <form method="GET" action="search_result.php" id="jobs-search-form"
           aria-label="Job search"
           style="display: flex; flex-direction: row; align-items: center; gap: 0; padding: 0; background: none; border: none; border-radius: 0; box-shadow: none; width: fit-content; margin: 1.5em auto;">
-        <label for="jobs-search-input" class="visually-hidden">Search jobs</label>
+        <label for="jobs-search-input" class="visually-hidden"></label>
         <input type="text" id="jobs-search-input" name="search"
                placeholder="Search jobs... e.g. Developer, Media"
                maxlength="100"

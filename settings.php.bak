@@ -1,0 +1,6 @@
+<?php
+$host = "localhost";
+$dbuser = "webuser";
+$dbpass = "password123";
+$dbname = "goobers_LOCAL_db";
+?>

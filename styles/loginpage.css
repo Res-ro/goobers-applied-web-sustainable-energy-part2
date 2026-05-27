@@ -62,7 +62,6 @@ All AI-generated code was reviewed and modified by the author before use.*/
 .item-2 {
 	grid-row: 1 / 5;
 	grid-column: 4 / 7;
-	/* margin-right: 20px; */
 }
 
 
@@ -387,4 +386,56 @@ footer {
 	border: 2px solid rgba(201, 168, 76, 0.5);
 	transform: translateY(-4px);
 	box-shadow: 0 8px 20px rgba(139, 107, 19, 0.15);
+}
+/* Sign in button */
+/* sourced from https://getcssscan.com/css-buttons-examples button 74 */
+.custom-button {
+  background-color: #fbeee0;
+  border: 2px solid #422800;
+  border-radius: 30px;
+  box-shadow: #422800 4px 4px 0 0;
+  color: #422800;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 1em;
+  padding: 0 16px;
+  line-height: 30px;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.custom-button:hover {
+  background-color: #fff;
+}
+
+.custom-button:active {
+  box-shadow: #422800 2px 2px 0 0;
+  transform: translate(2px, 2px);
+}
+
+@media (min-width: 768px) {
+  .custom-button {
+    min-width: 80px;
+    padding: 0 25px;
+  }
+}
+/* focus effect */
+input:focus,
+select:focus,
+textarea:focus {
+	outline: none;
+	border-color: var(--custom-peanut);
+	box-shadow: 0 0 6px var(--shadow-peanut-soft);
+}
+.application-form input,
+.application-form select,
+.application-form textarea {
+	padding: 8px;
+	border-radius: 6px;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
 }

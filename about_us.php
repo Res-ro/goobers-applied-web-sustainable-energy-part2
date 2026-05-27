@@ -60,9 +60,8 @@ require_once("settings.php");
         <section id="groupPhoto" class="contentBox" aria-label="Group Photo">
             <h2>Group Photo</h2>
             <figure>
-                <!-- Image generated using GPT Image 1.5 (OpenAI, October 2025). Reviewed and edited before use. -->
-                <img src="images/working.webp" alt="Group photo of the Goobers team">
-                <figcaption style="color:#8b6b13">
+                <img src="images/group_photo.png" alt="Group photo of the Goobers team">
+                <figcaption>
                     <strong>Our group working together on the project.</strong>
                 </figcaption>
             </figure>
