@@ -31,7 +31,7 @@ require_once("settings.php");
       <section id="highlights" class="contentBox" style="text-align: center;" aria-labelledby="highlights-heading">
         <h2 id="highlights-heading">What We Do</h2>
         <!-- Reference to image-->
-        <img src="images/dam.png" alt="Dam used to source renewable energy">
+	<img src="images/dam.png" alt="Dam used to source renewable energy">
         <div class="highlight-box">
           <h3>Renewable Technology</h3>
           <p>

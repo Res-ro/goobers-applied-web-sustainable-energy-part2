@@ -120,7 +120,7 @@ require_once("settings.php");
           </div>
         </div>
 
-        <button type="submit" aria-label="Submit job application form">Submit</button>
+        <button class="button" type="submit" aria-label="Submit job application form">Submit</button>
 
       </form>
     </section>
