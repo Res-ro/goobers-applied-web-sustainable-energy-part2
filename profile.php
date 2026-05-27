@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <h1>Welcome, <?php echo $username ?></h1>
 <p>What would you like to do today?</p>
 <ul>
-	<li>Logout</li>
+	<li><a href="logout.php">Logout</a></li>
 	<li>Update account details</li>
 	<li>Update database</li>
 </ul>

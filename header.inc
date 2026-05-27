@@ -30,21 +30,19 @@
 			<p class="account-name">
 			<?php echo htmlspecialchars($_SESSION['username']); ?>
 			</p>
-			<a href="profile.php" id="profile_button">
-			<img src="images/user_icon.png" alt="user_icon"
-				width="50" height="50" title="Go to profile">
+			<a href="profile.php" id="profile_button" aria-label="Go to profile">
 			</a>
 			</div>
 		<?php else: ?>
-			<div class="no-session-div">
-			<a href="sign_in.php" id="account-button">Log in</a>
+			<div>
+			<a href="sign_in.php" class="custom-button" id="account-button">Log in</a>
 			</div>
 		<?php endif; ?>
 	</div>
 
      <!-- Navigation Bar -->
       <nav class="item-3" aria-label="Main navigation">
-        <ul id="links">
+      <ul>
           <li><a href="index.php" aria-current="page">Home</a> </li>
           <li><a href="jobs.php">Jobs</a></li>
           <li><a href="apply.php">Apply</a></li>

@@ -79,7 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				<div class="error-message">
 					<?php echo $errormsg; ?>
 				</div>
-				<input type="submit" value="Login">
+				<input type="submit" class="custom-button" value="Login">
 			</div>
 		</form>
 	</div>
