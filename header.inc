@@ -32,7 +32,7 @@
 			</p>
 			<a href="profile.php" id="profile_button">
 			<img src="images/user_icon.png" alt="user_icon"
-				width="50" height="50">
+				width="50" height="50" title="Go to profile">
 			</a>
 			</div>
 		<?php else: ?>

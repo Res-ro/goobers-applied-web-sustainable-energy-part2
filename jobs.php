@@ -6,8 +6,8 @@ require_once("settings.php");
 
     <main>
 
-        <section>
-            <h2 style="color: inherit; font-size: 2em; font-weight: bold;">Available Jobs</h2>
+        <section class="jobs-heading">
+            <h1>Available Jobs</h1>
             <h2>Renewable Energy Career Opportunities</h2>
 
             <div class="top-layout">
@@ -25,20 +25,27 @@ require_once("settings.php");
         </section>
 
         <!-- Jobs-specific search bar -->
-        <form method="GET" action="search_result.php" id="jobs-search-form"
-              aria-label="Job search"
-              style="display: flex; flex-direction: row; align-items: center; gap: 0; padding: 0; background: none; border: none; border-radius: 0; box-shadow: none; width: fit-content; margin: 1.5em auto;">
-            <label for="jobs-search-input" class="visually-hidden">Search jobs</label>
-            <input type="text" id="jobs-search-input" name="search"
-                   placeholder="Search jobs... e.g. Developer, Media"
-                   maxlength="100"
-                   aria-label="Search jobs input"
-                   style="padding: 8px 14px; border: none; border-radius: 999px 0 0 999px; background-color: rgba(255,255,255,0.8); font-size: 1em; outline: none; width: 250px; box-shadow: 0 10px 35px rgba(0,0,0,0.4);">
-            <button type="submit"
-                    style="padding: 8px 18px; border: none; border-radius: 0 999px 999px 0; background-color: #8b6b13; color: white; font-size: 1em; font-weight: bold; cursor: pointer; box-shadow: 0 10px 35px rgba(0,0,0,0.4);">
-                Search
-            </button>
-        </form>
+	<form method="GET"
+	      action="search_result.php"
+	      id="jobs-search-form"
+	      aria-label="Job search">
+
+		<div class="searchBar">
+		<label for="jobs-search-input"></label>
+
+		<input
+			type="text"
+			id="jobs-search-input"
+			name="search"
+			placeholder="Search jobs... e.g. Developer, Media"
+			maxlength="100"
+			aria-label="Search jobs input">
+
+		<button type="submit">
+			Search
+		</button>
+		</div>
+	</form>
 
         <section>
             <div class="job-cards-container">

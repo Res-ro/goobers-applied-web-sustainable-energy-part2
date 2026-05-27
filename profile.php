@@ -10,21 +10,6 @@ $email = $_SESSION['email'];
  ?>
 <?php include "header.inc" ?>
 
-<h1>Welcome, <?php echo $username ?></h1>
-<p>Is your email still <?php echo $email ?>?</p>
-<main>
-	<div class="login-container">
-	<form method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
-			<div class="form-row">
-				<label for="new_email">
-				Enter a new email: </label>
-				<input type="text" name="new_email">
-			</div>
-			<input type="submit">
-		</form>
-	</div>
-</main>
-
 <?php
 $conn = mysqli_connect($host, $dbuser, $dbpass, $dbname);
 
@@ -43,4 +28,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	}
 }
 ?>
+<main class="profile-main">
+
+<h1>Welcome, <?php echo $username ?></h1>
+<p>What would you like to do today?</p>
+<ul>
+	<li>Logout</li>
+	<li>Update account details</li>
+	<li>Update database</li>
+</ul>
+
+<!-- <div class="change-email"> -->
+<!-- <p>Is your email still <?php echo $email ?>?</p> -->
+
+<!-- 	<div class="login-container"> -->
+<!-- 	<form method="post" action="<?php echo $_SERVER["PHP_SELF"];?>"> -->
+<!-- 			<div class="form-row"> -->
+<!-- 				<label for="new_email"> -->
+<!-- 				Enter a new email: </label> -->
+<!-- 				<input type="text" name="new_email"> -->
+<!-- 			</div> -->
+<!-- 			<input type="submit"> -->
+<!-- 	</form> -->
+<!-- 	</div> -->
+<!-- </div> -->
+</main>
+
 <?php include "footer.inc" ?>
