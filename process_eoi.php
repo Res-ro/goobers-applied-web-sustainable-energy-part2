@@ -72,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST" || !isset($_POST["ref_number"])) {
     if (!empty($first_name)) {
         if (!preg_match("/^[a-zA-Z ]+$/", $first_name)) { // preg_match is a php function that checks if a string matches required pattern
             $errors[] = "First name must contain only alphabetical characters.";
-        } else if (strlen($first_name) > 20) {
+        } else if (strlen($first_name) > 20) { // does not accept responses above 20 characters
             $errors[] = "First name cannot exceed 20 characters.";
         }
     }
@@ -102,7 +102,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST" || !isset($_POST["ref_number"])) {
         $errors[] = "Postcode must be exactly 4 digits.";
     }
 
-    // Phone number check (8 to 12 digits, spaces being allowed)
+    // Phone number check (8 to 12 digits, spaces being allowed) accepts characters 0-9
     if (!empty($phone_number) && !preg_match("/^[0-9 ]{8,12}$/", $phone_number)) {
         $errors[] = "Phone number must contain only 8 to 12 digits (spaces allowed).";
     }
@@ -142,8 +142,6 @@ if ($_SERVER["REQUEST_METHOD"] != "POST" || !isset($_POST["ref_number"])) {
         exit();
     }
 
-
-// retrieves the selected option(s) in the 'skills' section of the Apply form by using arrays
     $skills = "";
 
     $skills_posted = $_POST["skills"] ?? [];
@@ -163,7 +161,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST" || !isset($_POST["ref_number"])) {
     }
     if (isset($_POST["skills"][4])) {
         $skills .= ", " . $skills_posted[4];
-    }
+    } 
 
 
     // table properties, also creates a table, if it is not found in the database
