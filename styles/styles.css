@@ -732,3 +732,274 @@ header.header {
 	margin: 0.67em 0;
 }
 
+
+
+
+				/* MANAGE PAGE */
+
+
+
+
+/* =========================
+   MANAGE PAGE WRAPPER
+========================= */
+
+.manage-container {
+	width: 98%;              
+	max-width: 1500px;       
+
+	margin: 30px auto;
+	padding: 30px;
+
+	background: var(--glass-white);
+
+	border: 2px solid var(--border-white-soft);
+	border-radius: 20px;
+
+	box-shadow: 0 8px 20px var(--shadow-peanut-soft);
+
+	backdrop-filter: blur(10px);
+
+	text-align: center;
+}
+
+/* headings */
+.manage-container h1,
+.manage-container h2,
+.manage-container h3 {
+	color: var(--custom-peanut);
+	margin-bottom: 10px;
+}
+
+/* =========================
+   FORMS
+========================= */
+
+.manage-container form {
+	margin: 18px auto;
+	padding: 20px;
+
+	width: 70%;
+	max-width: 700px;
+
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	gap: 12px;
+
+	background: linear-gradient(
+		135deg,
+		rgba(255,255,255,0.85),
+		rgba(240,230,204,0.95),
+		rgba(250,248,242,0.9)
+	);
+
+	border: 2px solid rgba(255,255,255,0.4);
+	border-radius: 18px;
+
+	backdrop-filter: blur(12px);
+
+	box-shadow:
+		0 6px 18px rgba(139,107,19,0.12),
+		0 2px 6px rgba(0,0,0,0.05);
+
+	transition: 0.25s ease;
+}
+
+.manage-container form:hover {
+	transform: translateY(-2px);
+}
+
+/* =========================
+   INPUTS + SELECTS
+========================= */
+
+.manage-container input,
+.manage-container select {
+	padding: 9px 14px;
+
+	border: 1px solid #ccc;
+	border-radius: 999px;
+
+	font-size: 0.95em;
+
+	background: white;
+
+	outline: none;
+
+	transition: 0.2s ease;
+
+	min-width: 140px;
+}
+
+/* search box slightly bigger */
+.manage-container input[type="text"] {
+	min-width: 220px;
+}
+
+/* focus */
+.manage-container input:focus,
+.manage-container select:focus {
+	border-color: var(--custom-peanut);
+	box-shadow: 0 0 6px var(--shadow-peanut-soft);
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.manage-container input[type="submit"] {
+	background-color: var(--custom-peanut);
+	color: white;
+
+	font-weight: bold;
+
+	border: none;
+	cursor: pointer;
+
+	padding: 9px 16px;
+
+	transition: 0.2s ease;
+}
+
+.manage-container input[type="submit"]:hover {
+	background-color: var(--custom-peanut4);
+	transform: translateY(-2px);
+}
+
+/* =========================
+   TABLE WRAPPER
+========================= */
+
+.manage-table-wrap {
+	width: 100%;
+	overflow-x: auto;   
+	margin-top: 20px;
+}
+
+/* =========================
+   TABLE
+========================= */
+
+.manage-table {
+	width: 100%;
+	min-width: 1100px; 
+
+	border-collapse: collapse;
+
+	background: var(--custom-white);
+
+	border-radius: 15px;
+
+	overflow: hidden;
+
+	margin: 0 auto;
+}
+
+.manage-table th {
+	background-color: var(--custom-peanut);
+	color: white;
+
+	padding: 12px;
+
+	text-align: center;
+
+	font-size: 12px;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+}
+
+.manage-table td {
+	padding: 10px;
+
+	text-align: center;
+
+	border-bottom: 1px solid #ddd;
+
+	font-size: 13px;
+}
+
+.manage-table tr:hover td {
+	background-color: var(--custom-peanut3);
+}
+
+/* =========================
+   MESSAGE BOX
+========================= */
+
+.manage-message {
+	padding: 14px;
+
+	margin: 18px auto;
+
+	width: 70%;
+	max-width: 700px;
+
+	border-radius: 12px;
+
+	background: linear-gradient(
+		135deg,
+		rgba(255,255,255,0.9),
+		rgba(240,230,204,0.95)
+	);
+
+	border: 2px solid rgba(255,255,255,0.4);
+
+	box-shadow: 0 4px 12px rgba(139,107,19,0.12);
+
+	font-weight: bold;
+
+	color: var(--custom-peanut);
+}
+
+/* =========================
+   SORT BAR
+========================= */
+
+.sort-bar {
+	margin: 15px auto;
+	padding: 12px;
+
+	width: 90%;
+	max-width: 900px;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 12px;
+
+	background: var(--glass-white);
+	border: 2px solid var(--border-white-soft);
+	border-radius: 12px;
+
+	backdrop-filter: blur(10px);
+}
+
+.sort-bar select,
+.sort-bar input {
+	padding: 8px 12px;
+	border-radius: 999px;
+	border: 1px solid #ccc;
+	font-size: 0.9em;
+}
+
+/* =========================
+   RESPONSIVENESS MANAGE PAGE
+========================= */
+
+@media (max-width: 768px) {
+
+	.manage-container {
+		width: 95%;
+		padding: 18px;
+	}
+
+	.manage-container form {
+		width: 95%;
+	}
+
+	.manage-table {
+		min-width: 900px;
+	}
+}
