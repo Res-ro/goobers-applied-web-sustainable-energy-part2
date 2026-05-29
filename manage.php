@@ -1,4 +1,12 @@
 <?php
+
+session_start();
+
+if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+    header("Location: sign_in.php");
+    exit();
+}
+
 require_once("settings.php");
 
 $conn = mysqli_connect($host, $dbuser, $dbpass, $dbname);
