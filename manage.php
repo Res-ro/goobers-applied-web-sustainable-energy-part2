@@ -29,7 +29,6 @@ function getAISummary($text) {
 
     $url = "https://router.huggingface.co/v1/chat/completions";
 
-
     $text = substr($text, 0, 1500);
 
     $payload = json_encode([
@@ -62,6 +61,7 @@ function getAISummary($text) {
             "Content-Type: application/json"
         ],
 
+    
         CURLOPT_TIMEOUT => 25,
         CURLOPT_CONNECTTIMEOUT => 10
     ]);
@@ -274,11 +274,12 @@ if ($result && mysqli_num_rows($result) > 0) {
     $topStates = implode(', ', array_slice(array_keys($stateCounts), 0, 3));
 
     arsort($skillCounts);
-    $topSkills = implode(', ', array_slice(array_keys($skillCounts), 0, 5));
+    $topSkillsArr = array_slice($skillCounts, 0, 5, true);
+    $topSkills = implode(', ', array_map(fn($s, $c) => "$s ($c)", array_keys($topSkillsArr), $topSkillsArr));
 
     $aiText = "EOI Data Summary:
 "
-            . "- Total EOIs: $totalCount across $uniqueCount unique job(s).
+            . "- Total EOIs: $totalCount across $uniqueCount job(s).
 "
             . "- Status breakdown: $statusLine.
 "
@@ -294,8 +295,8 @@ if ($result && mysqli_num_rows($result) > 0) {
             . "Use only the data provided. Do not add commentary or filler.";
 }
 
-
-$skipAiRefresh = !empty($_GET['search']) || !empty($_GET['sort']) || isset($_GET['update']);
+// Only skip AI call when a search or sort is being performed (update/delete use session flag)
+$skipAiRefresh = !empty($_GET['search']) || !empty($_GET['sort']);
 
 if (isset($_SESSION['skipAiRefresh'])) {
     if ($_SESSION['skipAiRefresh']) $skipAiRefresh = true;
