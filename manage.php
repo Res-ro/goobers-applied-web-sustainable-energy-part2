@@ -359,7 +359,7 @@ include "header.inc";
             placeholder="Enter job reference, first or last name"
             value="<?php echo htmlspecialchars($_GET['search'] ?? ''); ?>">
 
-        <select name="sort" onchange="this.form.submit()">
+        <select name="sort">
 
             <option value="EOInumber" <?php if (($sort ?? '') == "EOInumber") echo "selected"; ?>>
                 Sort by EOI ID
