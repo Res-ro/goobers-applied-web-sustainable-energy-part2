@@ -19,8 +19,6 @@ All AI-generated code was reviewed and modified by the author before use.*/
 	/* font families */
 	--font-main: Verdana, Geneva;
 }
-
-
 footer {
 	text-align: center;
 	padding: 15px;
@@ -28,6 +26,8 @@ footer {
 	color: rgb(0, 0, 0);
 	background: transparent;
 }
+
+
 /* =========================
    LOGIN CSS
 ========================= */
@@ -37,117 +37,86 @@ footer {
 	justify-content: center;
 	align-items: center;
 }
-
-.login-container {
+.container-main {
 	border: 6px solid var(--goobers-main);
 	border-radius: 15px;
 	background-color: var(--goobers-light);
 
-	display: grid;
-	grid-template-rows: 2fr 1fr 1fr 1fr;
-	grid-template-columns: 1fr 1fr 1fr 1fr 2fr 2fr;
+	display: flex;
+	flex-direction: column;
 	width: 800px;
-	height: 300px;
+	min-height: 400px;
 
 	font-family: var(--font-main);
+	padding: 15px;
 }
-
-.item {
+.container-header {
 	background-color: var(--goobers-cream);
 	color: var(--goobers-brown);
 	border-radius: 15px;
+
 	margin: 15px;
+	padding: 20px;
+
 	font-size: 24px;
 	text-align: center;
-}
-
-.item-1 {
-	grid-row: 1 / 5;
-	grid-column: 1 / 4;
-}
-
-.item-2 {
-	grid-row: 1 / 5;
-	grid-column: 4 / 7;
-	/* overflow: visible; */
 }
 
 
 form {
 	display: flex;
-	height: 100%;
 	flex-direction: column;
-	justify-content: space-evenly;
+	gap: 15px;
 }
 
-.inputs-container {
-	border-radius: 15px;
-	margin-top: 1.5em;
-	display: grid;
-}
-
-.submit-container{
-	/* border-radius: 15px; */
-	display: flex;
-	align-items: center;
-	width: 100%;
-}
 
 .form-row {
 	font-size: 0.80em;
 	padding: 0.5em;
-	margin: 2px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	gap: 24px;
-}
-.form-row label {
-    display: inline-block;   /* makes width apply */
-    width: 110px;             /* adjust width as needed */
-    text-align: left;       /* aligns label text to the right */
 }
 
-.back-btn,
+input[type="text"],
+input[type="password"] {
+	margin-left: 5em;
+}
+
 input[type="submit"] {
 	/* margin-left: auto; */
-	margin-right: 40px;
+	/* margin-right: 20px; */
 	border-radius: 0;
 	padding: 0.3em;
 	width: 5em;
 }
 
-.logo img{
-	margin-top: 0.5em;
-	height: 60%;
-	width: 60%;
+
+.submit-container {
+	display: flex;
+	justify-content: space-evenly;
+	width: 100%;
+	padding: 15px;
+	margin-top: 20px;
 }
 
-.sign-in-message h2 {
-	margin: 0;
-	color: var(--goobers-main2);
-}
 
-.sign-in-message p {
-	font-size: 0.58em;
-	margin: 0;
-}
 
-.error-message {
-	color: var(--goobers-red);
-	font-size: 0.9rem;
-	margin-left: auto;
-	margin-right: 20px;
-	text-align: right;
-}
-
-.inputs-container input[type="text"]:focus,
-.inputs-container input[type="password"]:focus,
- {
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus {
 	outline: none;
 	border-color: var(--goobers-main);
 	box-shadow: 0 0 6px rgba(139, 107, 19, 0.25);
 }
+
+
+
+.error-message {
+	color: var(--goobers-red);
+	font-size: 0.9rem;
+	text-align: center;
+	margin-top: 20px;
+	min-height: 20px;
+}
+
 
 @keyframes gradientShift {
 	0% { background-position: 0% 50%; }
@@ -166,8 +135,6 @@ body, main {
 	animation: gradientShift 16s ease infinite;
 }
 
-
-
 .custom-button {
   background-color: #fbeee0;
   border: 2px solid #422800;
@@ -179,7 +146,7 @@ body, main {
   font-weight: 600;
   font-size: 1em;
   padding: 0 18px;
-  line-height: 32px;
+  line-height: 45px;
   text-align: center;
   text-decoration: none;
   user-select: none;
@@ -204,20 +171,4 @@ body, main {
 .back-btn {
 	border-radius: 0;
 	padding: 0.3em;
-}
-
-/* Apply glow to text and password inputs inside the login container */
-.login-container input[type="text"],
-.login-container input[type="password"] {
-    border: 1px solid #ccc;      /* default border */
-    background-color: white;     /* make sure background is light */
-    padding: 0.1em;
-    transition: 0.2s ease;       /* smooth glow transition */
-}
-
-.login-container input[type="text"]:focus,
-.login-container input[type="password"]:focus {
-    outline: none; /* remove default focus */
-    border-color: var(--goobers-main);
-    box-shadow: 0 0 8px rgba(139, 107, 19, 0.5); /* glow */
 }

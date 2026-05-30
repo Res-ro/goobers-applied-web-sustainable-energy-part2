@@ -26,12 +26,20 @@
 	<!-- Login button -->
 	<div class="item-2" aria-label="Login button">
 		<?php if (isset($_SESSION['username'])): ?>
-			<div class="session-div">
-			<p class="account-name">
-			<?php echo htmlspecialchars($_SESSION['username']); ?>
-			</p>
-			<a href="profile.php" id="profile_button" aria-label="Go to profile">
-			</a>
+			<div class="dropdown">
+				<div class="dropdown-header">
+				<p class="dropdown-btn">
+				<?php echo htmlspecialchars($_SESSION['username']); ?>
+				<div id="profile_button" aria-label="Go to profile">
+				</div>
+				</div>
+				<div class="dropdown-content">
+					<ul>
+						<li><a href="profile.php">Account Settings</a></li>
+						<li><a href="manage.php">Management Page</a></li>
+						<li><a href="logout.php">Logout</a></li>
+					</ul>
+				</div>
 			</div>
 		<?php else: ?>
 			<div>

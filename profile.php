@@ -28,14 +28,48 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	}
 }
 ?>
-<main class="profile-main">
+<main>
 
+
+<div class="profile-main">
 <h1>Welcome, <?php echo $username ?></h1>
-<p>What would you like to do today?</p>
-<ul>
-    <li><a href="manage.php">Access the manage page</a></li>
-	<li><a href="logout.php">Logout</a></li>
-</ul>
+
+
+
+<div class="account-settings">
+
+<h2>Account Settings</h2>
+
+    <div class="settings-box">
+
+      <!-- Username -->
+      <div class="settings-row">
+        <span class="settings-label">Username:</span>
+        <span class="settings-value"><?php echo htmlspecialchars($username); ?></span>
+        <a class="custom-button" href="edit_username.php">Edit</a>
+      </div>
+
+      <!-- Email -->
+      <div class="settings-row">
+        <span class="settings-label">Email:</span>
+        <span class="settings-value"><?php echo htmlspecialchars($email); ?></span>
+        <a class="custom-button" href="edit_email.php">Edit</a>
+      </div>
+
+      <!-- Password -->
+      <div class="settings-row">
+        <span class="settings-label">Password:</span>
+        <span class="settings-value">••••••••</span>
+        <a class="custom-button" href="edit_password.php">Edit</a>
+      </div>
+
+    </div>
+
+</div>
+</div>
+
+
+
 
 <!-- <div class="change-email"> -->
 <!-- <p>Is your email still <?php echo $email ?>?</p> -->
