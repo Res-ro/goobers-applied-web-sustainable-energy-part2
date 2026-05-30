@@ -113,6 +113,7 @@ header.header {
 #logo {
 	max-width: 100%;
 	max-height: 150px;
+	transition: 0.2s ease;
 }
 
 #logo:hover {
@@ -745,8 +746,8 @@ header.header {
 ========================= */
 
 .manage-container {
-	width: 98%;              
-	max-width: 1500px;       
+	width: 98%;
+	max-width: 1500px;
 
 	margin: 30px auto;
 	padding: 30px;
@@ -874,7 +875,7 @@ header.header {
 
 .manage-table-wrap {
 	width: 100%;
-	overflow-x: auto;   
+	overflow-x: auto;
 	margin-top: 20px;
 }
 
@@ -884,7 +885,7 @@ header.header {
 
 .manage-table {
 	width: 100%;
-	min-width: 1100px; 
+	min-width: 1100px;
 
 	border-collapse: collapse;
 
