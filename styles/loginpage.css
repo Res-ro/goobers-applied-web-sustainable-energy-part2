@@ -14,7 +14,7 @@ All AI-generated code was reviewed and modified by the author before use.*/
 	--goobers-dark: #4d3900;
 	--goobers-black: #1a1300;
 	--goobers-brown: #4d2600;
-	--goobers-red: #e90010;
+	--goobers-red: #a4352a;
 
 	/* font families */
 	--font-main: Verdana, Geneva;
@@ -31,6 +31,7 @@ footer {
 /* =========================
    LOGIN CSS
 ========================= */
+
 
 .login-main {
 	display: flex;
@@ -125,7 +126,7 @@ input[type="submit"] {
 
 .sign-in-message h2 {
 	margin: 0;
-	color: var(--goobers-main2);
+	color: var(--goobers-red);
 }
 
 .sign-in-message p {
