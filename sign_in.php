@@ -21,10 +21,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$user = mysqli_fetch_assoc($result);
 
 	if ($user) {
+
 		$_SESSION['username'] = $user['username'];
 		$_SESSION['email'] = $user['email'];
+		$logLogin = "INSERT INTO login_history (username, login_time)
+					 VALUES ('$username', NOW())";
+		mysqli_query($conn, $logLogin);
 		header("Location: profile.php");
 		exit();
+	
 	} else {
 		$_SESSION['errormsg'] = "Invalid input, try again...";
 		header("Location: sign_in.php");
