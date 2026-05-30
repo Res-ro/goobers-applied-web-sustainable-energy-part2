@@ -4,6 +4,7 @@ require_once("settings.php");
 ?>
 <?php include "header.inc" ?>
 
+<title>Goobers - Jobs</title>
     <main>
 
         <section class="jobs-heading">

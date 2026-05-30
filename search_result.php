@@ -29,6 +29,7 @@ if (!$conn) {
 }
 ?>
 
+<title>Search result</title>
 <main>
 
     <!--persistent search bar-->

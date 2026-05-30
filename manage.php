@@ -25,7 +25,7 @@ if (!$conn) {
 
 function getAISummary($text) {
 
-    $apiKey = "insertkeyhere";
+    $apiKey = "";
 
     $url = "https://router.huggingface.co/v1/chat/completions";
 
@@ -61,7 +61,7 @@ function getAISummary($text) {
             "Content-Type: application/json"
         ],
 
-    
+
         CURLOPT_TIMEOUT => 25,
         CURLOPT_CONNECTTIMEOUT => 10
     ]);
@@ -70,12 +70,10 @@ function getAISummary($text) {
 
     if ($response === false) {
         $err = curl_error($ch);
-        curl_close($ch);
         return "AI summary unavailable (cURL error: $err)";
     }
 
     $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-    curl_close($ch);
 
     if ($httpCode !== 200) {
         // FIX DEBUG: show raw API error message to help diagnose further issues
@@ -125,7 +123,7 @@ if (isset($_GET['delete_job'])) {
 }
 
 if (isset($_SESSION['deleteMessage'])) {
-    $deleteMessage = $_SESSION['deleteMessage']; 
+    $deleteMessage = $_SESSION['deleteMessage'];
     unset($_SESSION['deleteMessage']);
 }
 
@@ -175,8 +173,8 @@ if (!empty($_GET['search'])) {
     $search = mysqli_real_escape_string($conn, $_GET['search']);
 
     $sql .= " AND (
-        ref_number LIKE '%$search%' 
-        OR first_name LIKE '%$search%' 
+        ref_number LIKE '%$search%'
+        OR first_name LIKE '%$search%'
         OR last_name LIKE '%$search%'
     )";
 }
@@ -212,6 +210,7 @@ $historyResult = mysqli_query(
 );
 
 $lastLogin = mysqli_fetch_assoc($historyResult);
+
 
 /* =========================
    AI SUMMARY DATA BUILDER
@@ -315,6 +314,7 @@ if ($isSearchOrSort && isset($_SESSION['aiSummary'])) {
 include "header.inc";
 ?>
 
+<title>Goobers - Management</title>
 <main>
 
 <div class="manage-container">

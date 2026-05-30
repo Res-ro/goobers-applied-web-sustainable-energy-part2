@@ -4,6 +4,7 @@ require_once("settings.php");
 ?>
 <?php include "header.inc" ?>
 
+<title>Goobers - Home</title>
     <main>
        <!-- Card 1 - Powering a cleaner Tomorrow -->
       <section id="company-value" class="contentBox" style="text-align: center;" aria-labelledby="powering-heading">

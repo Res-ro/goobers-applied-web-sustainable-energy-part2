@@ -28,6 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	}
 }
 ?>
+<title>Goobers - Profile</title>
 <main>
 
 

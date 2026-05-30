@@ -3,6 +3,7 @@ session_start();
 require_once("settings.php");
 ?>
 <?php include "header.inc" ?>
+<title>Goobers - Apply</title>
 
   <main>
 
