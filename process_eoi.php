@@ -19,10 +19,6 @@ if ($_SERVER["REQUEST_METHOD"] != "POST" || !isset($_POST["ref_number"])) {
     exit();
 }
 
-// if ($_SERVER["REQUEST_METHOD"] != "POST") {
-//     header("Location: apply.php");
-//     exit();
-// }
   $conn = mysqli_connect($host, $dbuser, $dbpass, $dbname);
 
     if (!$conn) {
@@ -42,11 +38,10 @@ if ($_SERVER["REQUEST_METHOD"] != "POST" || !isset($_POST["ref_number"])) {
     $email           = sanitise_input($_POST["email"]);
     $phone_number    = sanitise_input($_POST["phone_number"]);
     $other_skills    = sanitise_input($_POST["other_skills"]);
-    $status          = sanitise_input($_POST["status"]);
+    $status          = sanitise_input($_POST["status"] ?? "");
 
 
     // Server-side validation rules, checks if any of the required fields are empty and adds an error message to the $errors array if they are
-    // Errors is an empty array that stores validation error messages
     $errors = [];
 
     if (empty($ref_number))     $errors[] = "Job reference number is required.";
@@ -64,22 +59,22 @@ if ($_SERVER["REQUEST_METHOD"] != "POST" || !isset($_POST["ref_number"])) {
 
     // Format Checks / Validation
     // Job Reference Number check (Exactly 5 alphanumeric characters)
-    if (!empty($ref_number) && !preg_match("/^[a-zA-Z0-9]{5}$/", $ref_number)) { // preg_match is a php function that checks if a string matches required pattern
+    if (!empty($ref_number) && !preg_match("/^[a-zA-Z0-9]{5}$/", $ref_number)) { 
         $errors[] = "Job reference number must be exactly 5 alphanumeric characters.";
     }
 
     // First Name check
     if (!empty($first_name)) {
-        if (!preg_match("/^[a-zA-Z ]+$/", $first_name)) { // preg_match is a php function that checks if a string matches required pattern
+        if (!preg_match("/^[a-zA-Z ]+$/", $first_name)) { 
             $errors[] = "First name must contain only alphabetical characters.";
-        } else if (strlen($first_name) > 20) { // does not accept responses above 20 characters
+        } else if (strlen($first_name) > 20) { 
             $errors[] = "First name cannot exceed 20 characters.";
         }
     }
 
     // Last Name check
     if (!empty($last_name)) {
-        if (!preg_match("/^[a-zA-Z ]+$/", $last_name)) { // preg_match is a php function that checks if a string matches required pattern
+        if (!preg_match("/^[a-zA-Z ]+$/", $last_name)) { 
             $errors[] = "Last name must contain only alphabetical characters.";
         } else if (strlen($last_name) > 20) {
             $errors[] = "Last name cannot exceed 20 characters.";
@@ -87,7 +82,6 @@ if ($_SERVER["REQUEST_METHOD"] != "POST" || !isset($_POST["ref_number"])) {
     }
 
     // Email format check
-    // FILTER_VALIDATE_EMAIL is a built in php function that checks if an email address is valid
     if (!empty($email) && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $errors[] = "Invalid email format.";
     }
@@ -98,75 +92,67 @@ if ($_SERVER["REQUEST_METHOD"] != "POST" || !isset($_POST["ref_number"])) {
     }
 
     // Postcode check (Exactly 4 digits & Numeric)
-    if (!empty($postcode) && !preg_match("/^[0-9]{4}$/", $postcode)) { // preg_match is a php function that checks if a string matches required pattern
+    if (!empty($postcode) && !preg_match("/^[0-9]{4}$/", $postcode)) { 
         $errors[] = "Postcode must be exactly 4 digits.";
     }
 
-    // Phone number check (8 to 12 digits, spaces being allowed) accepts characters 0-9
+    // Phone number check (8 to 12 digits, spaces being allowed)
     if (!empty($phone_number) && !preg_match("/^[0-9 ]{8,12}$/", $phone_number)) {
         $errors[] = "Phone number must contain only 8 to 12 digits (spaces allowed).";
     }
 
     if (!empty($date_of_birth)) {
-        // Pattern / Format check for DOB (dd/mm/yyyy)
         if (!preg_match("/^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/", $date_of_birth, $matches)) {
             $errors[] = "Date of birth must be in the format dd/mm/yyyy.";
         } else {
-            // Convert the DOB into integers for day, month and year (Allows for further validation checks)
-            $day   = (int)$matches[1]; // Splits date into day (Eg. 12/11/2000 would be 12)
-            $month = (int)$matches[2]; // Splits date into month (Eg. 12/11/2000 would be 11)
-            $year  = (int)$matches[3]; // Splits date into year (Eg. 12/11/2000 would be 2000)
+            $day   = (int)$matches[1]; 
+            $month = (int)$matches[2]; 
+            $year  = (int)$matches[3]; 
 
-            // Verify it's a real calendar date (rejects 50/11/2009 for example)
-            if (!checkdate($month, $day, $year)) { // checkdate is an american function in php. Required to be in month, day, year format for database.
+            if (!checkdate($month, $day, $year)) { 
                 $errors[] = "The date of birth provided is not a valid calendar date.";
             } 
-            // Ensure they aren't born in the future or be 200 years old
-            else if ($year > 2026 || $year < 1900) { // || means OR in php
+            else if ($year > 2026 || $year < 1900) { 
                 $errors[] = "Please enter a realistic year of birth.";
             }
         }
     }
 
 
-    // If validation errors exist, teminate execution and show them to the user
+    // --- FIXED VALIDATION ERROR RENDERING ---
+    // If validation errors exist, terminate execution and show them beautifully inside the layout card
     if (!empty($errors)) {
-        echo "<h1>Application Error</h1>";
-        echo "<ul>";
-        foreach ($errors as $error) { // Loops through each error in the $errors array and displays it as a list item in an unordered list
-            echo "<li>" . $error . "</li>";
-        }
-        echo "</ul>";
-        echo "<p><a href='apply.php'>Go back and fix the form</a></p>";
-        mysqli_close($conn); // $conn is a variable that stores the database connection
+        include("header.inc");
+        ?>
+        <main class="result-page">
+            <div class="result-card">
+                <h1>Application Error</h1>
+                <p style="color: #c62828; font-weight: bold;">Please resolve the following issues:</p>
+                <ul style="text-align: left; max-width: 400px; margin: 20px auto; line-height: 1.6;">
+                    <?php foreach ($errors as $error) { 
+                        echo "<li>" . $error . "</li>";
+                    } ?>
+                </ul>
+                <a href="apply.php" class="back-button">Go Back to Form</a>
+            </div>
+        </main>
+        <?php 
+        include("footer.inc");
+        mysqli_close($conn); 
         exit();
     }
 
     $skills = "";
-
     $skills_posted = $_POST["skills"] ?? [];
 
-    // .= is used to append to a string rather than overwrite it. Puts everything on the same line in the database
-    if (isset($_POST["skills"][0])) {
-        $skills .= $skills_posted[0];
-    }
-    if (isset($_POST["skills"][1])) {
-        $skills .= ", " . $skills_posted[1];
-    }
-    if (isset($_POST["skills"][2])) {
-        $skills .= ", " . $skills_posted[2];
-    }
-    if (isset($_POST["skills"][3])) {
-        $skills .= ", " . $skills_posted[3];
-    }
-    if (isset($_POST["skills"][4])) {
-        $skills .= ", " . $skills_posted[4];
-    } 
+    if (isset($_POST["skills"][0]))  $skills .= $skills_posted[0];
+    if (isset($_POST["skills"][1]))  $skills .= ", " . $skills_posted[1];
+    if (isset($_POST["skills"][2]))  $skills .= ", " . $skills_posted[2];
+    if (isset($_POST["skills"][3]))  $skills .= ", " . $skills_posted[3];
+    if (isset($_POST["skills"][4]))  $skills .= ", " . $skills_posted[4];
 
 
     // table properties, also creates a table, if it is not found in the database
-    // CREATE TABLE IF NOT EXISTS sourced from https://www.geeksforgeeks.org/sql/create-a-table-if-it-doesn-t-exist-in-sql/ Accessed: Wed 20 May 2026
-    // Primary Key automatically gives each record a new number
     $table_sql = "CREATE TABLE IF NOT EXISTS eoi (  
         EOInumber INT AUTO_INCREMENT PRIMARY KEY,
         ref_number VARCHAR(5),
@@ -187,29 +173,50 @@ if ($_SERVER["REQUEST_METHOD"] != "POST" || !isset($_POST["ref_number"])) {
 
     mysqli_query($conn, $table_sql);
 
-// Inserts the submitted form values into the "eoi" table
-// Uses prepared statements with placeholders (?) to help protect against SQL injection attacks
+    // Inserts the submitted form values into the "eoi" table
     $stmt = $conn->prepare("
         INSERT INTO eoi ( ref_number, first_name, last_name, date_of_birth, gender, street_address, suburb_or_town, state, postcode,email, phone_number, skills, other_skills, status
     )
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-    // Binds the PHP variables to the placeholders in the SQL statement
-    // "s" means the value is treated as a string
-    // The variables are matched in the same order as the VALUES placeholders
     $stmt->bind_param("ssssssssssssss",$ref_number, $first_name, $last_name, $date_of_birth,$gender, $street_address, $suburb_or_town,$state, $postcode, $email, $phone_number, $skills, $other_skills, $status);
 
 
-
-    // Executes the prepared SQL statement
     if ($stmt->execute()) {
         $eoi_number = $conn->insert_id;
-        echo "<h1>Application Successful</h1>";
-        echo "<p>EOI Number: " . $eoi_number . "</p>";
-    }   
+        
+        include("header.inc"); 
+    ?>
+        <link rel="stylesheet" href="styles/process_eoi.css">
+
+        <div class="eoi-success-container">
+            <div class="result-card">
+                <h1>Application Complete</h1>
+                
+                <p class="eoi-number">
+                    EOI Number: <span class="eoi-value"><?php echo $eoi_number; ?></span>
+                </p>
+
+                <a href="apply.php" class="back-button">Return</a>
+            </div>
+        </div>
+    <?php        
+        include("footer.inc");
+    }
     else {
-     // Displays an error message if the insert fails
-    echo "Error: " . $stmt->error;
+        include("header.inc");
+        ?>
+        <link rel="stylesheet" href="process_eoi.css">
+
+        <main class="result-page">
+            <div class="result-card">
+                <h1>Database Error</h1>
+                <p>Error: <?php echo $stmt->error; ?></p>
+                <a href="apply.php" class="back-button">Try Again</a>
+            </div>
+        </main>
+        <?php
+        include("footer.inc");
     }
 
 mysqli_close($conn);
