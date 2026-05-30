@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Change Username</title>
-    <link rel="stylesheet" href="./styles/edit_username.css">
+    <link rel="stylesheet" href="./styles/edit_pages.css">
   </head>
   <body>
 
