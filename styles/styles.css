@@ -414,6 +414,9 @@ header.header {
 
 
 			/* ===== APPLY ===== */
+
+
+
 /* MAIN FORM CARD */
 .application-form form {
 	width: 600px;
@@ -451,9 +454,22 @@ header.header {
 	background: var(--custom-goobergray);
 }
 /* LABELS */
+
+/* Creates label spacing next to text inputs */
+/* Reduces text thickness */
 .application-form label {
-	font-weight: bold;
+display: inline-block;
+margin-bottom: 5px;
+font-weight: 500;
 }
+
+/* Form block containers spacing */
+.application-form form div {
+margin-bottom: 18px;
+}
+
+
+
 /* INPUTS */
 .application-form input,
 .application-form select,
@@ -491,6 +507,35 @@ header.header {
 	display: inline;
 }
 
+
+/* Style fieldsets for a cleaner, cohesive structure */
+.application-form fieldset {
+border: 2px solid #ccc;
+border-radius: 6px;
+padding: 15px;
+margin-top: 10px;
+}
+
+
+
+
+/* Interactive visual cue for when user hovers over radio inputs */
+/* Hover halo for radio buttons */
+.application-form input[type="radio"]:hover {
+    cursor: pointer;
+    box-shadow: 0 0 0 2px var(--custom-peanut2);
+    border-radius: 50%;
+}
+
+/* Hover halo for checkboxes */
+.application-form input[type="checkbox"]:hover {
+    cursor: pointer;
+    box-shadow: 0 0 0 2px var(--custom-peanut2);
+    border-radius: 4px;
+}
+
+
+
 				/* PROFILE PAGE */
 .profile-main {
 	display: flex;
@@ -498,6 +543,7 @@ header.header {
 	justify-content: flex-start;
 	align-items: center;
 }
+
 
 
 
