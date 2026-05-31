@@ -1,3 +1,6 @@
+<?php
+$current_page = basename($_SERVER['PHP_SELF']);
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -48,12 +51,12 @@
 	</div>
 
      <!-- Navigation Bar -->
-      <nav class="item-3" aria-label="Main navigation">
-      <ul>
-          <li><a href="index.php" aria-current="page">Home</a> </li>
-          <li><a href="jobs.php">Jobs</a></li>
-          <li><a href="apply.php">Apply</a></li>
-          <li><a href="about_us.php">About Us</a></li>
-        </ul>
-      </nav>
+	<nav class="item-3" aria-label="Main navigation">
+	  <ul>
+	      <li><a href="index.php" class="<?= $current_page == 'index.php' ? 'active' : '' ?>">Home</a></li>
+	      <li><a href="jobs.php" class="<?= $current_page == 'jobs.php' ? 'active' : '' ?>">Jobs</a></li>
+	      <li><a href="apply.php" class="<?= $current_page == 'apply.php' ? 'active' : '' ?>">Apply</a></li>
+	      <li><a href="about_us.php" class="<?= $current_page == 'about_us.php' ? 'active' : '' ?>">About Us</a></li>
+	  </ul>
+	</nav>
     </header>
