@@ -26,12 +26,13 @@
 	--main-font: Verdana, Geneva, sans-serif;
 }
 
+/* Commented Animated Background as per Nicks Request */
 
-@keyframes gradientShift {
+/* @keyframes gradientShift {
 	0% { background-position: 0% 50%; }
 	50% { background-position: 100% 50%; }
 	100% { background-position: 0% 50%; }
-}
+} */
 
 body {
 	width: 100%;
@@ -42,7 +43,11 @@ body {
 	font-family: var(--main-font);
 	font-size: 16px;
 
-	background: linear-gradient(
+	background: var(--custom-cream);
+
+	/* Commenting out Animated Background as per Nicks Request */
+	
+	/* background: linear-gradient(
 	135deg,
 	var(--custom-white),
 	var(--custom-cream),
@@ -51,7 +56,7 @@ body {
 	);
 
 	background-size: 400% 400%;
-	animation: gradientShift 8s ease infinite;
+	animation: gradientShift 8s ease infinite; */
 }
 
 main {
