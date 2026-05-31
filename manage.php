@@ -1,13 +1,11 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+error_reporting(E_ALL); // show all PHP errors
+ini_set('display_errors', 1); // enable error display
 
-session_start();
-require_once("settings.php");
+session_start(); // start session for login tracking
+require_once("settings.php"); // load DB settings
 
-/* =========================
-   LOGIN PROTECTION
-========================= */
+/* LOGIN PROTECTION */
 if (!isset($_SESSION['username'])) {
     header("Location: sign_in.php");
     exit();
@@ -19,17 +17,14 @@ if (!$conn) {
     die("Database connection failed");
 }
 
-/* =========================
-   HUGGING FACE AI SUMMARY
-========================= */
-
+/* AI SUMMARY FUNCTION */
 function getAISummary($text) {
 
     $apiKey = "";
 
     $url = "https://router.huggingface.co/v1/chat/completions";
 
-    $text = substr($text, 0, 1500);
+    $text = substr($text, 0, 1500); // limit AI input size
 
     $payload = json_encode([
         "model" => "meta-llama/Llama-3.1-8B-Instruct",
@@ -37,7 +32,7 @@ function getAISummary($text) {
         "messages" => [
             [
                 "role" => "system",
-                "content" => "You are an assistant that summarises EOI recruitment data. Write exactly 3 formal, professional sentences using only the data provided. Sentence 1: total EOI count and status breakdown. Sentence 2: geographic distribution covering towns and states. Sentence 3: most common skills listed by applicants. Do NOT add commentary, filler phrases, or any information not present in the data."
+                "content" => "You are an assistant that summarises EOI recruitment data. Write exactly 3 formal, professional sentences."
             ],
             [
                 "role" => "user",
@@ -60,8 +55,6 @@ function getAISummary($text) {
             "Authorization: Bearer $apiKey",
             "Content-Type: application/json"
         ],
-
-
         CURLOPT_TIMEOUT => 25,
         CURLOPT_CONNECTTIMEOUT => 10
     ]);
@@ -76,13 +69,11 @@ function getAISummary($text) {
     $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
     if ($httpCode !== 200) {
-        // FIX DEBUG: show raw API error message to help diagnose further issues
         return "AI summary unavailable (API error $httpCode): " . $response;
     }
 
     $result = json_decode($response, true);
 
-    // Hugging Face chat format response parsing
     if (isset($result["choices"][0]["message"]["content"])) {
         return trim($result["choices"][0]["message"]["content"]);
     }
@@ -90,13 +81,12 @@ function getAISummary($text) {
     return "AI summary unavailable (invalid response)";
 }
 
-/* =========================
-   DELETE EOIs
-========================= */
-$deleteMessage = "";
+/* DELETE EOIs */
+$deleteMessage = ""; // stores user feedback after delete action
 
 if (isset($_GET['delete_job'])) {
 
+    // validate input
     if (empty(trim($_GET['delete_job']))) {
         $_SESSION['deleteMessage'] = "<span style='color:red;'>Error: Please enter a job reference to delete.</span>";
         $_SESSION['skipAiRefresh'] = true;
@@ -106,15 +96,16 @@ if (isset($_GET['delete_job'])) {
 
     $job = mysqli_real_escape_string($conn, $_GET['delete_job']);
 
+    // check if job exists before deleting
     $checkResult = mysqli_query($conn, "SELECT COUNT(*) AS total FROM eoi WHERE ref_number='$job'");
     $checkRow = mysqli_fetch_assoc($checkResult);
 
     if ($checkRow['total'] == 0) {
-        $_SESSION['deleteMessage'] = "<span style='color:red;'>Error: No EOIs found for Job Reference: " . htmlspecialchars($_GET['delete_job']) . "</span>";
+        $_SESSION['deleteMessage'] = "<span style='color:red;'>Error: No EOIs found for Job Reference.</span>";
         $_SESSION['skipAiRefresh'] = true;
     } else {
         mysqli_query($conn, "DELETE FROM eoi WHERE ref_number='$job'");
-        $_SESSION['deleteMessage'] = "Deleted EOIs for Job Reference: " . htmlspecialchars($_GET['delete_job']);
+        $_SESSION['deleteMessage'] = "Deleted EOIs for Job Reference.";
         $_SESSION['skipAiRefresh'] = false;
     }
 
@@ -122,34 +113,36 @@ if (isset($_GET['delete_job'])) {
     exit();
 }
 
+/* load delete message after redirect */
 if (isset($_SESSION['deleteMessage'])) {
     $deleteMessage = $_SESSION['deleteMessage'];
     unset($_SESSION['deleteMessage']);
 }
 
-/* =========================
-   UPDATE STATUS
-========================= */
+/* UPDATE STATUS */
 $updateMessage = "";
 
 if (isset($_GET['update'])) {
 
+    // validate EOI ID input
     if (empty(trim($_GET['eoi_id'] ?? ''))) {
-        $_SESSION['updateMessage'] = "<span style='color:red;'>Error: Please enter an EOI number to update.</span>";
+        $_SESSION['updateMessage'] = "<span style='color:red;'>Error: Please enter an EOI number.</span>";
         $_SESSION['skipAiRefresh'] = true;
     } else {
+
         $id = mysqli_real_escape_string($conn, $_GET['eoi_id']);
         $status = mysqli_real_escape_string($conn, $_GET['status']);
 
+        // verify record exists
         $checkResult = mysqli_query($conn, "SELECT COUNT(*) AS total FROM eoi WHERE EOInumber='$id'");
         $checkRow = mysqli_fetch_assoc($checkResult);
 
         if ($checkRow['total'] == 0) {
-            $_SESSION['updateMessage'] = "<span style='color:red;'>Error: No EOI found with ID: " . htmlspecialchars($_GET['eoi_id']) . "</span>";
+            $_SESSION['updateMessage'] = "<span style='color:red;'>Error: No EOI found.</span>";
             $_SESSION['skipAiRefresh'] = true;
         } else {
             mysqli_query($conn, "UPDATE eoi SET status='$status' WHERE EOInumber='$id'");
-            $_SESSION['updateMessage'] = "EOI #" . htmlspecialchars($_GET['eoi_id']) . " status updated to " . htmlspecialchars($_GET['status']) . ".";
+            $_SESSION['updateMessage'] = "EOI status updated successfully.";
             $_SESSION['skipAiRefresh'] = false;
         }
     }
@@ -158,20 +151,18 @@ if (isset($_GET['update'])) {
     exit();
 }
 
+/* load update message after redirect */
 if (isset($_SESSION['updateMessage'])) {
     $updateMessage = $_SESSION['updateMessage'];
     unset($_SESSION['updateMessage']);
 }
 
-/* =========================
-   BASE QUERY
-========================= */
+/* BASE QUERY */
 $sql = "SELECT * FROM eoi WHERE 1=1";
 
+/* SEARCH FILTER */
 if (!empty($_GET['search'])) {
-
     $search = mysqli_real_escape_string($conn, $_GET['search']);
-
     $sql .= " AND (
         ref_number LIKE '%$search%'
         OR first_name LIKE '%$search%'
@@ -179,6 +170,7 @@ if (!empty($_GET['search'])) {
     )";
 }
 
+/* SORT HANDLING */
 $allowed_sort = ["EOInumber","ref_number","first_name","last_name","status"];
 $sort = "EOInumber";
 
@@ -190,16 +182,12 @@ $sql .= " ORDER BY $sort";
 
 $result = mysqli_query($conn, $sql);
 
-/* =========================
-   STATS
-========================= */
+/* TOTAL EOIs COUNT */
 $countResult = mysqli_query($conn, "SELECT COUNT(*) AS total FROM eoi");
 $countRow = mysqli_fetch_assoc($countResult);
 $totalEOIs = $countRow['total'];
 
-/* =========================
-   LOGIN HISTORY
-========================= */
+/* LAST LOGIN CHECK */
 $historyResult = mysqli_query(
     $conn,
     "SELECT username, login_time
@@ -211,103 +199,68 @@ $historyResult = mysqli_query(
 
 $lastLogin = mysqli_fetch_assoc($historyResult);
 
-
-/* =========================
-   AI SUMMARY DATA BUILDER
-========================= */
-
+/* AI DATA PREPARATION */
 $aiText = "";
 
 if ($result && mysqli_num_rows($result) > 0) {
 
-    mysqli_data_seek($result, 0);
+    mysqli_data_seek($result, 0); // reset result pointer
 
     $statusCounts = [];
-    $uniqueJobs   = [];
-    $townCounts   = [];
-    $stateCounts  = [];
-    $skillCounts  = [];
+    $townCounts = [];
+    $stateCounts = [];
+    $skillCounts = [];
 
     while ($row = mysqli_fetch_assoc($result)) {
-        // status
-        $s = $row['status'];
-        $statusCounts[$s] = ($statusCounts[$s] ?? 0) + 1;
 
-        // jobs
-        $uniqueJobs[$row['ref_number']] = true;
+        // count statuses
+        $statusCounts[$row['status']] = ($statusCounts[$row['status']] ?? 0) + 1;
 
-        // towns
+        // count towns
         $town = trim($row['suburb_or_town']);
-        if ($town !== '') {
-            $townCounts[$town] = ($townCounts[$town] ?? 0) + 1;
-        }
+        if ($town) $townCounts[$town] = ($townCounts[$town] ?? 0) + 1;
 
-        // states
+        // count states
         $state = trim($row['state']);
-        if ($state !== '') {
-            $stateCounts[$state] = ($stateCounts[$state] ?? 0) + 1;
-        }
+        if ($state) $stateCounts[$state] = ($stateCounts[$state] ?? 0) + 1;
 
-        // skills (comma-separated field)
+        // split and count skills
         $skills = array_filter(array_map('trim', explode(',', $row['skills'] ?? '')));
         foreach ($skills as $skill) {
-            if ($skill !== '') {
-                $skillCounts[$skill] = ($skillCounts[$skill] ?? 0) + 1;
-            }
+            $skillCounts[$skill] = ($skillCounts[$skill] ?? 0) + 1;
         }
     }
 
+    // reset pointer again for table display
     mysqli_data_seek($result, 0);
 
-    $totalCount  = array_sum($statusCounts);
-    $uniqueCount = count($uniqueJobs);
-
-    $statusLine = implode(', ', array_map(
-        fn($s, $c) => "$c $s", array_keys($statusCounts), $statusCounts
-    ));
+    $statusLine = implode(', ', array_map(fn($s,$c)=>"$c $s", array_keys($statusCounts), $statusCounts));
 
     arsort($townCounts);
-    $topTowns = implode(', ', array_slice(array_keys($townCounts), 0, 3));
-
     arsort($stateCounts);
-    $topStates = implode(', ', array_slice(array_keys($stateCounts), 0, 3));
-
     arsort($skillCounts);
-    $topSkillsArr = array_slice($skillCounts, 0, 5, true);
-    $topSkills = implode(', ', array_map(fn($s, $c) => "$s ($c)", array_keys($topSkillsArr), $topSkillsArr));
 
-    $aiText = "EOI Data Summary:
-"
-            . "- Total EOIs: $totalCount across $uniqueCount job(s).
-"
-            . "- Status breakdown: $statusLine.
-"
-            . "- Most common towns/suburbs: " . ($topTowns ?: "N/A") . ".
-"
-            . "- Most common states: " . ($topStates ?: "N/A") . ".
-"
-            . "- Most listed skills: " . ($topSkills ?: "N/A") . ".
-
-"
-            . "Write exactly 3 formal, professional sentences summarising the above. "
-            . "Cover: (1) total EOIs and status breakdown, (2) geographic distribution by town and state, (3) most common skills. "
-            . "Use only the data provided. Do not add commentary or filler.";
+    $aiText = "EOI Data Summary:\n"
+        . "- Status breakdown: $statusLine\n"
+        . "- Top towns: " . implode(', ', array_slice(array_keys($townCounts), 0, 3)) . "\n"
+        . "- Top states: " . implode(', ', array_slice(array_keys($stateCounts), 0, 3)) . "\n"
+        . "- Top skills: " . implode(', ', array_keys(array_slice($skillCounts, 0, 5, true)));
 }
 
-// Only skip AI call when a search or sort is being performed (update/delete use session flag)
+/* AI CACHE CONTROL */
 $skipAiRefresh = !empty($_GET['search']) || !empty($_GET['sort']);
 
+// override cache behaviour after delete/update actions
 if (isset($_SESSION['skipAiRefresh'])) {
     if ($_SESSION['skipAiRefresh']) $skipAiRefresh = true;
     unset($_SESSION['skipAiRefresh']);
 }
 
-$isSearchOrSort = $skipAiRefresh;
-
-if ($isSearchOrSort && isset($_SESSION['aiSummary'])) {
+// reuse cached AI summary if valid
+if ($skipAiRefresh && isset($_SESSION['aiSummary'])) {
     $aiSummary = $_SESSION['aiSummary'];
 } else {
-    $aiSummary = !empty($aiText) ? getAISummary($aiText) : "No EOI data available to summarise.";
+    $aiSummary = !empty($aiText) ? getAISummary($aiText) : "No EOI data available.";
     $_SESSION['aiSummary'] = $aiSummary;
 }
 
@@ -321,46 +274,50 @@ include "header.inc";
 
     <h1>EOI Management System</h1>
 
-    <!-- AI SUMMARY -->
+    <h2>AI Summary</h2>
     <div class="manage-message">
         🤖 Hey <?php echo htmlspecialchars($_SESSION['username']); ?>!
         <br><br>
-        <?php echo htmlspecialchars($aiSummary); ?>
+        <?php echo htmlspecialchars($aiSummary); ?> <!-- AI-generated summary output -->
     </div>
 
-    <!-- dashboard -->
+    <!-- DASHBOARD SECTION: shows key system stats -->
+    <h2>Dashboard</h2>
     <div class="dashboard">
 
         <div class="manage-message dashboard-box">
             📄 Total EOIs
-            <strong><?php echo $totalEOIs; ?></strong>
+            <strong><?php echo $totalEOIs; ?></strong> <!-- total database entries -->
         </div>
 
         <div class="manage-message dashboard-box">
             👤 Logged in as:
-            <strong><?php echo $_SESSION['username']; ?></strong>
+            <strong><?php echo $_SESSION['username']; ?></strong> <!-- current user -->
         </div>
 
         <div class="manage-message dashboard-box">
             🕒 Last Login
             <strong>
                 <?php echo $lastLogin ? $lastLogin['login_time'] : "No record"; ?>
-            </strong>
+            </strong> <!-- previous login timestamp -->
         </div>
 
     </div>
 
-    <!-- search -->
-    <h3>Search EOIs</h3>
+    <!-- SEARCH + SORT SECTION -->
+    <h2>Search EOIs</h2>
 
     <form method="GET">
 
-        <input type="text" name="search"
+        <label for="search">Search EOIs</label>
+        <input type="text" id="search" name="search"
             placeholder="Enter job reference, first or last name"
             value="<?php echo htmlspecialchars($_GET['search'] ?? ''); ?>">
 
-        <select name="sort">
+        <label for="sort">Sort results</label>
+        <select id="sort" name="sort">
 
+            <!-- sorting options control SQL ORDER BY -->
             <option value="EOInumber" <?php if (($sort ?? '') == "EOInumber") echo "selected"; ?>>
                 Sort by EOI ID
             </option>
@@ -384,25 +341,32 @@ include "header.inc";
         </select>
 
         <input type="submit" value="Search / List All">
-
     </form>
 
-    <!-- delete -->
-    <h3>Delete EOIs</h3>
+    <!-- DELETE SECTION -->
+    <h2>Delete EOIs</h2>
+
     <form method="GET">
-        <input type="text" name="delete_job" placeholder="Enter job reference">
+        <label for="delete_job">Job Reference to delete</label>
+        <input type="text" id="delete_job" name="delete_job" placeholder="Enter job reference">
         <input type="submit" value="Delete">
     </form>
+
+    <!-- delete feedback message (success/error) -->
     <?php if ($deleteMessage): ?>
         <p class="manage-message"><?php echo $deleteMessage; ?></p>
     <?php endif; ?>
 
-    <!-- update -->
-    <h3>Update Status</h3>
-    <form method="GET">
-        <input type="text" name="eoi_id" placeholder="Enter EOI Number">
+    <!-- UPDATE SECTION -->
+    <h2>Update Status</h2>
 
-        <select name="status">
+    <form method="GET">
+
+        <label for="eoi_id">EOI Number</label>
+        <input type="text" id="eoi_id" name="eoi_id" placeholder="Enter EOI Number">
+
+        <label for="status">Status</label>
+        <select id="status" name="status">
             <option>New</option>
             <option>Current</option>
             <option>Final</option>
@@ -410,18 +374,23 @@ include "header.inc";
 
         <input type="submit" name="update" value="Update">
     </form>
+
+    <!-- update feedback message -->
     <?php if ($updateMessage): ?>
         <p class="manage-message"><?php echo $updateMessage; ?></p>
     <?php endif; ?>
 
-    <!-- results -->
-    <h3>Results</h3>
+    <!-- RESULTS SECTION -->
+    <h2>Results</h2>
 
+    <!-- if database has results, show table -->
     <?php if (mysqli_num_rows($result) > 0): ?>
 
     <div class="manage-table-wrap">
+
         <table class="manage-table">
 
+            <!-- TABLE HEADER -->
             <tr>
                 <th>EOI</th>
                 <th>Job Ref</th>
@@ -440,6 +409,7 @@ include "header.inc";
                 <th>Status</th>
             </tr>
 
+            <!-- LOOP THROUGH ALL EOIs AND DISPLAY ROWS -->
             <?php while ($row = mysqli_fetch_assoc($result)): ?>
             <tr>
                 <td><?php echo $row['EOInumber']; ?></td>
@@ -461,10 +431,11 @@ include "header.inc";
             <?php endwhile; ?>
 
         </table>
+
     </div>
 
     <?php else: ?>
-        <p class="manage-message">No EOIs found.</p>
+        <p class="manage-message">No EOIs found.</p> <!-- fallback when query returns nothing -->
     <?php endif; ?>
 
 </div>
