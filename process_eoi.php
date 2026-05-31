@@ -1,6 +1,7 @@
 <?php
 
-
+// Start the session to enable session variables across pages
+session_start();
 
 // checks database settings
 require_once("settings.php");
