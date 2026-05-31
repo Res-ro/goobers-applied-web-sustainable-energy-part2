@@ -517,8 +517,6 @@ margin-top: 10px;
 }
 
 
-
-
 /* Interactive visual cue for when user hovers over radio inputs */
 /* Hover halo for radio buttons */
 .application-form input[type="radio"]:hover {
@@ -534,6 +532,11 @@ margin-top: 10px;
     border-radius: 4px;
 }
 
+/*  colours the checkboxes when ticked */
+.application-form input[type="radio"],
+.application-form input[type="checkbox"] {
+    accent-color: var(--main-bg);
+}
 
 
 				/* PROFILE PAGE */
