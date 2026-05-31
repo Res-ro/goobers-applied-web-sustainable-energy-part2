@@ -757,6 +757,10 @@ header.header {
 	text-overflow: ellipsis;
 }
 
+.modal-content h2 {
+	color: var(--custom-peanut);
+}
+
 /* =========================
    MODAL SYSTEM
 ========================= */
