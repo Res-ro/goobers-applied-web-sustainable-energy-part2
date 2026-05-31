@@ -3,6 +3,9 @@
 // Start the session to enable session variables across pages
 session_start();
 
+// reads value from jobs page apply button GET request
+$job_ref = isset($_GET['job_ref']) ? $_GET['job_ref'] : '';
+
 // Load database configuration (host, user, password, database name)
 require_once("settings.php");
 ?>
@@ -16,7 +19,7 @@ require_once("settings.php");
 <title>Goobers - Apply</title>
 
 <style>
-  
+
   /* Created embedded CSS for improving visual clarity and design of the form */
 
   /* Form block containers spacing */
@@ -51,7 +54,7 @@ require_once("settings.php");
 
   <main>
 
-    <section class="application-form" aria-labelledby="form-title"> 
+    <section class="application-form" aria-labelledby="form-title">
       <h2 id="form-title">Job Application Form</h2>
 
 
@@ -64,19 +67,19 @@ require_once("settings.php");
         <!-- Applicant enters the reference number of the job they are applying for -->
         <div class="reference">
           <label for="ref_number">Job Reference Number</label>
-          <input type="text" id="ref_number" name="ref_number" placeholder="12345" aria-required="true"><br>
+          <input type="text" id="ref_number" name="ref_number" placeholder="12345" value="<?php echo htmlspecialchars($job_ref); ?>" aria-required="true"><br>
           <!-- aria-required tells screen readers this field is required -->
         </div>
 
         <!-- Personal Info -->
-        
+
         <div class="personal">
 
           <!-- First name: letters and spaces only, max 25 characters -->
           <!-- 'First Name' is the visible label; 'first_name' is the POST key sent to process_eoi.php -->
           <label for="first_name">First Name</label>
           <input type="text" id="first_name" name="first_name"
-                placeholder="John" aria-required="true" 
+                placeholder="John" aria-required="true"
                 pattern="[A-Za-z ]{1,25}" title="First name must only contain letters and spaces (max 25 characters)"><br>
                 <!-- pattern provides client-side regex validation as a validation check -->
 
@@ -84,12 +87,12 @@ require_once("settings.php");
           <!-- Last name: same rules as first name -->
           <label for="last_name">Last Name</label>
           <input type="text" id="last_name" name="last_name"
-                placeholder="Smith" aria-required="true" 
+                placeholder="Smith" aria-required="true"
                 pattern="[A-Za-z ]{1,25}" title="Last name must only contain letters and spaces (max 25 characters)"><br>
 
-          <!-- Date of birth: expects dd/mm/yyyy format, validated server-side -->      
+          <!-- Date of birth: expects dd/mm/yyyy format, validated server-side -->
           <label for="date_of_birth">Date of Birth</label>
-          <input type="text" id="date_of_birth" name="date_of_birth"  
+          <input type="text" id="date_of_birth" name="date_of_birth"
                  placeholder="dd/mm/yyyy" aria-required="true"><br>
 
           <!-- Gender fieldset: Radio buttons grouped with fieldset and legend -->
@@ -107,7 +110,7 @@ require_once("settings.php");
 
         <!-- Address -->
         <div class="address">
-          
+
           <!-- Street address: free text, validated server-side -->
           <label for="street_address">Street Address</label>
           <input type="text" id="street_address" name="street_address"
@@ -186,7 +189,7 @@ require_once("settings.php");
           <!-- max-height: 200px caps how tall the user can drag it -->
           <div class="other-grid">
             <label for="other_skills">Other Skills:</label><br>
-            <textarea name="other_skills" id="other_skills" rows="5" cols="65" placeholder="Write a description of your skills here..." 
+            <textarea name="other_skills" id="other_skills" rows="5" cols="65" placeholder="Write a description of your skills here..."
                       style="resize: vertical; max-height: 200px;"></textarea><br><br>
           </div>
         </div>

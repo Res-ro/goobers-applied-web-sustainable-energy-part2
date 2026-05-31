@@ -66,7 +66,7 @@
                 </ul>
 
                 <div class="apply-row">
-                    <a href="apply.php" class="apply-button">Apply</a>
+		<a href="apply.php?job_ref=<?php echo urlencode($reference); ?>" class="apply-button">Apply</a>
                     <!--Redundant Links due to apply buttons inside modals-->
                     <span class="job-ref">REF: <?php echo $reference; ?></span>
                 </div>
