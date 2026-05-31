@@ -1,7 +1,6 @@
 <?php
 
-// Start the session to enable session variables across pages
-session_start();
+
 
 // checks database settings
 require_once("settings.php");
@@ -138,6 +137,7 @@ if ($_SERVER["REQUEST_METHOD"] != "POST" || !isset($_POST["ref_number"])) {
     if (!empty($errors)) {
         include("header.inc");
         ?>
+        <title>Application Error</title>
         <link rel="stylesheet" href="styles/process_eoi.css">
 
         <div class="eoi-success-container">
@@ -216,6 +216,8 @@ if ($stmt->execute()) {
         
         include("header.inc"); 
     ?>
+        <title>Application Completed</title>
+
         <link rel="stylesheet" href="styles/process_eoi.css">
 
         <!-- Success card shown to user on successful submission -->
@@ -238,6 +240,8 @@ if ($stmt->execute()) {
         // If execute() failed, display the database error message
         include("header.inc");
         ?>
+
+        <title>Application Error</title>
         <link rel="stylesheet" href="styles/process_eoi.css">
 
         <!-- Error card shown if the database insert failed -->
