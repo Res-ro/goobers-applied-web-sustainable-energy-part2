@@ -9,19 +9,22 @@ require_once("settings.php");
 
         <section class="jobs-heading">
             <h1>Available Jobs</h1>
-            <h2>Renewable Energy Career Opportunities</h2>
 
-            <div class="top-layout">
-                <ol>
-                    <li>Browse available job roles</li>
-                    <li>Open a job to view full details</li>
-                    <li>Click apply and submit your application</li>
-                </ol>
+            <div class="jobs-heading-box">
+                <h2>Renewable Energy Career Opportunities</h2>
 
-                <aside>
-                    <h3>Application Tip</h3>
-                    <p>Ensure your CV highlights relevant technical skills and teamwork experience.</p>
-                </aside>
+                <div class="top-layout">
+                    <ol>
+                        <li>Browse available job roles</li>
+                        <li>Open a job to view full details</li>
+                        <li>Click apply and submit your application</li>
+                    </ol>
+
+                    <aside>
+                        <h3>Application Tip</h3>
+                        <p>Ensure your CV highlights relevant technical skills and teamwork experience.</p>
+                    </aside>
+                </div>
             </div>
         </section>
 

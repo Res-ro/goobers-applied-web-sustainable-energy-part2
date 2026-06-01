@@ -89,7 +89,7 @@ button {
 .item-3 li a {
 	cursor: pointer;
 }
-/* Ensure images don’t overflow layout anywhere */
+/* Ensure images don't overflow layout anywhere */
 img {
 	max-width: 100%;
 	height: auto;
@@ -147,10 +147,6 @@ header.header {
 	font-size: 1.2em;
 	border-radius: 50px;
 }
-
-
-
-
 
 
 
@@ -675,7 +671,6 @@ margin-top: 10px;
 
 
 
-
 				/* JOBS */
 
 
@@ -691,6 +686,24 @@ margin-top: 10px;
 }
 .jobs-heading h2 {
 	color: var(--custom-peanut);
+}
+
+/* =========================
+   JOBS HEADING BOX
+========================= */
+
+.jobs-heading-box {
+	box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+	transition: 0.3s;
+	border-radius: 5px;
+	border: 1px solid lightgrey;
+	background-color: rgba(255, 255, 255, 0.75);
+	padding: 20px 25px;
+}
+
+.jobs-heading-box:hover {
+	box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+	background-color: rgba(255, 255, 255, 0.9);
 }
 
 /* =========================
