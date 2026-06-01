@@ -179,7 +179,8 @@ INSERT INTO `user` (`username`, `password`, `email`) VALUES
 ('Aiden', '$2y$10$OvcuSrvEVnMUTlrE42gvSe2N7S4rIIEUOpqe2/IB4DjJDK.0jvd3C', 'aiden@swinburne.com'),
 ('Huw', '$2y$10$tJ.nwtgEh9FZGizDFqKLzeaQLkyZdC7z06vMm3LRKDPd1UXol/nLG', 'huw@swinburne.com'),
 ('Ned', '$2y$10$FFhW0Nn5clRD/OEO2qQ52.AnT8C5o61ZQpcsWpHPI7G59VaNyLLcu', 'ned@swinburne.com'),
-('Tyler', '$2y$10$S45plo382FUp7MHXlMeMf.vQvtBiBm3rGrxT4lILeKzFJrL8Juzru', 'tyler@swinburne.com');
+('Tyler', '$2y$10$S45plo382FUp7MHXlMeMf.vQvtBiBm3rGrxT4lILeKzFJrL8Juzru', 'tyler@swinburne.com')
+('admin', '$2y$10$9bFuUfIaWHgcqxSjAWcMl.K.5hGzCyikszfOVP1dH2ySn7VqK20oS', 'admin@goobers.com');
 
 --
 -- Indexes for dumped tables
