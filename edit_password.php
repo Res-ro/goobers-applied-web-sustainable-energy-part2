@@ -2,6 +2,11 @@
 session_start();
 require_once("settings.php");
 
+//prevents cross site request forgery vulnerability
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32)); 
+}
+
 if (!isset($_SESSION['username'])) {
 	header("Location: sign_in.php");
 	exit();
@@ -13,7 +18,9 @@ $errormsg = "";
 
 /* HANDLE UPDATE */
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
+    if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+        die("Invalid request.");
+    }
 	$current_password  = $_POST["current_password"];
 	$new_password      = $_POST["new_password"];
 	$confirm_password  = $_POST["confirm_password"];
@@ -74,7 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <p>Update the password for <strong><?php echo htmlspecialchars($_SESSION['username']); ?></strong></p>
 
         <form id="passwordForm" class="form-container" method="post">
-
+            <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>">
             <div class="form-row">
                 <label for="current_password">Current Password:</label>
                 <input type="password" id="current_password" name="current_password">

@@ -2,6 +2,11 @@
 session_start();
 require_once("settings.php");
 
+//prevents cross site request forgery vulnerability
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32)); 
+}
+
 $errormsg = "";
 
 if (isset($_SESSION['errormsg'])) {
@@ -12,7 +17,9 @@ if (isset($_SESSION['errormsg'])) {
 $conn = mysqli_connect($host, $dbuser, $dbpass, $dbname);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
+	if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+        die("Invalid request.");
+	}
     $username = mysqli_real_escape_string($conn, $_POST["username"]);
     $password = $_POST["password"]; 
 
@@ -24,8 +31,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $_SESSION['username'] = $user['username'];
         $_SESSION['email'] = $user['email'];
-        $logLogin = "INSERT INTO login_history (username, login_time)
-                     VALUES ('$username', NOW())";
+        $safe_log_username = mysqli_real_escape_string($conn, $username);
+		$logLogin = "INSERT INTO login_history (username, login_time) VALUES ('$safe_log_username', NOW())";
         mysqli_query($conn, $logLogin);
         header("Location: profile.php");
         exit();
@@ -69,6 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 	<div class="item item-2">
 	<form class="form-container" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+		<input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>">
 			<div class="inputs-container">
 				<div class="form-row">
 					<label for="username">Username: </label>

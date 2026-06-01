@@ -2,6 +2,11 @@
 session_start();
 require_once("settings.php");
 
+//prevents cross site request forgery vulnerability
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32)); 
+}
+
 if (!isset($_SESSION['username'])) {
 	header("Location: sign_in.php");
 	exit();
@@ -13,9 +18,12 @@ $errormsg = "";
 
 /* HANDLE UPDATE */
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+        die("Invalid request.");
+    }
 
-	$new_username = trim($_POST["username"]);
-	$current_username = $_SESSION['username'];
+	$new_username = mysqli_real_escape_string($conn, trim($_POST["username"]));
+    $current_username = mysqli_real_escape_string($conn, $_SESSION['username']);
 
 	// basic safety check
 	if ($new_username === "") {
@@ -62,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <p>Current: <?php echo htmlspecialchars($_SESSION['username']); ?></p>
 
         <form id="usernameForm" class="form-container" method="post">
-
+            <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>">
             <div class="form-row">
                 <label for="username">New Username:</label>
                 <input type="text" name="username"

@@ -5,6 +5,11 @@ ini_set('display_errors', 1); // enable error display
 session_start(); // start session for login tracking
 require_once("settings.php"); // load DB settings
 
+//prevents cross site request forgery vulnerability
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32)); 
+}
+
 /* LOGIN PROTECTION */
 if (!isset($_SESSION['username'])) {
     header("Location: sign_in.php");
@@ -123,7 +128,9 @@ if (isset($_SESSION['deleteMessage'])) {
 $updateMessage = "";
 
 if (isset($_GET['update'])) {
-
+    if (!isset($_GET['csrf_token']) || $_GET['csrf_token'] !== $_SESSION['csrf_token']) {
+        die("Invalid request.");
+    }
     // validate EOI ID input
     if (empty(trim($_GET['eoi_id'] ?? ''))) {
         $_SESSION['updateMessage'] = "<span style='color:red;'>Error: Please enter an EOI number.</span>";
@@ -347,6 +354,7 @@ include "header.inc";
     <h2>Delete EOIs</h2>
 
     <form method="GET">
+        <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>">
         <label for="delete_job">Job Reference to delete</label>
         <input type="text" id="delete_job" name="delete_job" placeholder="Enter job reference">
         <input type="submit" value="Delete">
@@ -361,7 +369,7 @@ include "header.inc";
     <h2>Update Status</h2>
 
     <form method="GET">
-
+        <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>">
         <label for="eoi_id">EOI Number</label>
         <input type="text" id="eoi_id" name="eoi_id" placeholder="Enter EOI Number">
 
@@ -412,21 +420,21 @@ include "header.inc";
             <!-- LOOP THROUGH ALL EOIs AND DISPLAY ROWS -->
             <?php while ($row = mysqli_fetch_assoc($result)): ?>
             <tr>
-                <td><?php echo $row['EOInumber']; ?></td>
-                <td><?php echo $row['ref_number']; ?></td>
-                <td><?php echo $row['first_name']; ?></td>
-                <td><?php echo $row['last_name']; ?></td>
-                <td><?php echo $row['date_of_birth']; ?></td>
-                <td><?php echo $row['gender']; ?></td>
-                <td><?php echo $row['street_address']; ?></td>
-                <td><?php echo $row['suburb_or_town']; ?></td>
-                <td><?php echo $row['state']; ?></td>
-                <td><?php echo $row['postcode']; ?></td>
-                <td><?php echo $row['email']; ?></td>
-                <td><?php echo $row['phone_number']; ?></td>
-                <td><?php echo $row['skills']; ?></td>
-                <td><?php echo $row['other_skills']; ?></td>
-                <td><?php echo $row['status']; ?></td>
+            <td><?php echo htmlspecialchars($row['EOInumber']); ?></td>
+            <td><?php echo htmlspecialchars($row['ref_number']); ?></td>
+            <td><?php echo htmlspecialchars($row['first_name']); ?></td>
+            <td><?php echo htmlspecialchars($row['last_name']); ?></td>
+            <td><?php echo htmlspecialchars($row['date_of_birth']); ?></td>
+            <td><?php echo htmlspecialchars($row['gender']); ?></td>
+            <td><?php echo htmlspecialchars($row['street_address']); ?></td>
+            <td><?php echo htmlspecialchars($row['suburb_or_town']); ?></td>
+            <td><?php echo htmlspecialchars($row['state']); ?></td>
+            <td><?php echo htmlspecialchars($row['postcode']); ?></td>
+            <td><?php echo htmlspecialchars($row['email']); ?></td>
+            <td><?php echo htmlspecialchars($row['phone_number']); ?></td>
+            <td><?php echo htmlspecialchars($row['skills']); ?></td>
+            <td><?php echo htmlspecialchars($row['other_skills']); ?></td>
+            <td><?php echo htmlspecialchars($row['status']); ?></td>
             </tr>
             <?php endwhile; ?>
 

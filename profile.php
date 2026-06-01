@@ -14,8 +14,9 @@ $email = $_SESSION['email'];
 $conn = mysqli_connect($host, $dbuser, $dbpass, $dbname);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-	$new_email = $_POST["new_email"];
-	$query = "UPDATE user SET email = '$new_email' WHERE username = '$username'";
+	$new_email = mysqli_real_escape_string($conn, $_POST["new_email"]);
+  $safe_username = mysqli_real_escape_string($conn, $username);
+  $query = "UPDATE user SET email = '$new_email' WHERE username = '$safe_username'";
 
 	$result = mysqli_query($conn, $query);
 
