@@ -176,10 +176,10 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`username`, `password`, `email`) VALUES
-('Aiden', '106501062', 'aiden@swinburne.com'),
-('Huw', '106515526', 'huw@swinburne.com'),
-('Ned', '102566889', 'ned@swinburne.com'),
-('Tyler', '106524221', 'tyler@swinburne.com');
+('Aiden', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'aiden@swinburne.com'),
+('Huw', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'huw@swinburne.com'),
+('Ned', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'ned@swinburne.com'),
+('Tyler', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'tyler@swinburne.com');
 
 --
 -- Indexes for dumped tables
