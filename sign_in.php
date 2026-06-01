@@ -68,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	</div>
 
 	<div class="item item-2">
-	<form class="form-container" method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
+	<form class="form-container" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
 			<div class="inputs-container">
 				<div class="form-row">
 					<label for="username">Username: </label>
