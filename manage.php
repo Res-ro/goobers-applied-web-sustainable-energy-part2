@@ -5,54 +5,53 @@ ini_set('display_errors', 1); // enable error display
 session_start(); // start session for login tracking
 require_once("settings.php"); // load DB settings
 
-//prevents cross site request forgery vulnerability
-if (empty($_SESSION['csrf_token'])) {
-    $_SESSION['csrf_token'] = bin2hex(random_bytes(32)); 
-}
-
 /* LOGIN PROTECTION */
 if (!isset($_SESSION['username'])) {
-    header("Location: sign_in.php");
+    header("Location: sign_in.php"); // redirects to sign in page if the user has not signed in
     exit();
 }
 
-$conn = mysqli_connect($host, $dbuser, $dbpass, $dbname);
+$conn = mysqli_connect($host, $dbuser, $dbpass, $dbname); // grabs data from settings.php
 
 if (!$conn) {
     die("Database connection failed");
 }
 
+// The following section of code was assisted by ChatGPT (OpenAI, GPT-5.5, April 2026).
+// The code was reviewed, tested, and adjusted by the student before submission.
 /* AI SUMMARY FUNCTION */
 function getAISummary($text) {
 
-    $apiKey = "";
+    $apiKey = ""; // API key which is used to connect to the Hugging Face endpoint
 
-    $url = "https://router.huggingface.co/v1/chat/completions";
+    $url = "https://router.huggingface.co/v1/chat/completions"; // Hugging Face AI Endpoint (where the responses are sourced from)
 
     $text = substr($text, 0, 1500); // limit AI input size
 
     $payload = json_encode([
-        "model" => "meta-llama/Llama-3.1-8B-Instruct",
+        "model" => "meta-llama/Llama-3.1-8B-Instruct", // specifices which model to use
 
         "messages" => [
             [
-                "role" => "system",
-                "content" => "You are an assistant that summarises EOI recruitment data. Write exactly 3 formal, professional sentences."
+                "role" => "system", // provides the instructions to the AI
+                "content" => "You are an assistant that summarises EOI recruitment data. Write exactly 3 formal, professional sentences." // Provides instructions and criteria which the model must follow in its response
             ],
             [
-                "role" => "user",
-                "content" => $text
+                "role" => "user", // the user's input (what gets sent to the AI)
+                "content" => $text // the EOI data which is to be summarised by the AI
             ]
         ],
 
-        "temperature" => 0.2,
-        "max_tokens" => 120
+        "temperature" => 0.2, // limits how random the responses are
+        "max_tokens" => 120 // maximum number of tokens which can be used for the response
     ]);
 
+    // create an instance of curl (which is used to send and receive data from API's)
     $ch = curl_init();
-
-    curl_setopt_array($ch, [
-        CURLOPT_URL => $url,
+    
+    // configures the API requests settings such as authentication, and connection timeout
+    curl_setopt_array($ch, [ 
+        CURLOPT_URL => $url, 
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_POST => true,
         CURLOPT_POSTFIELDS => $payload,
@@ -66,24 +65,25 @@ function getAISummary($text) {
 
     $response = curl_exec($ch);
 
+    // check for errors with Curl
     if ($response === false) {
         $err = curl_error($ch);
         return "AI summary unavailable (cURL error: $err)";
     }
 
-    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE); // get status code for errors
 
-    if ($httpCode !== 200) {
+    if ($httpCode !== 200) { // handle API Errors
         return "AI summary unavailable (API error $httpCode): " . $response;
     }
 
-    $result = json_decode($response, true);
+    $result = json_decode($response, true); // converts the JSON Response into PHP
 
     if (isset($result["choices"][0]["message"]["content"])) {
         return trim($result["choices"][0]["message"]["content"]);
-    }
+    } // returns the AI response if the function was successful
 
-    return "AI summary unavailable (invalid response)";
+    return "AI summary unavailable (invalid response)"; // returns an error if the response is invalid
 }
 
 /* DELETE EOIs */
@@ -128,9 +128,7 @@ if (isset($_SESSION['deleteMessage'])) {
 $updateMessage = "";
 
 if (isset($_GET['update'])) {
-    if (!isset($_GET['csrf_token']) || $_GET['csrf_token'] !== $_SESSION['csrf_token']) {
-        die("Invalid request.");
-    }
+
     // validate EOI ID input
     if (empty(trim($_GET['eoi_id'] ?? ''))) {
         $_SESSION['updateMessage'] = "<span style='color:red;'>Error: Please enter an EOI number.</span>";
@@ -143,18 +141,19 @@ if (isset($_GET['update'])) {
         // verify record exists
         $checkResult = mysqli_query($conn, "SELECT COUNT(*) AS total FROM eoi WHERE EOInumber='$id'");
         $checkRow = mysqli_fetch_assoc($checkResult);
-
+        // check if EOI record exists
         if ($checkRow['total'] == 0) {
             $_SESSION['updateMessage'] = "<span style='color:red;'>Error: No EOI found.</span>";
             $_SESSION['skipAiRefresh'] = true;
         } else {
+            // update EOI status in database
             mysqli_query($conn, "UPDATE eoi SET status='$status' WHERE EOInumber='$id'");
             $_SESSION['updateMessage'] = "EOI status updated successfully.";
-            $_SESSION['skipAiRefresh'] = false;
+            $_SESSION['skipAiRefresh'] = false; // allow the AI summary to update according to the new database
         }
     }
 
-    header("Location: " . strtok($_SERVER['REQUEST_URI'], '?'));
+    header("Location: " . strtok($_SERVER['REQUEST_URI'], '?')); // reload page and remove URL parameters
     exit();
 }
 
@@ -206,13 +205,17 @@ $historyResult = mysqli_query(
 
 $lastLogin = mysqli_fetch_assoc($historyResult);
 
+// The following section of code was assisted by ChatGPT (OpenAI, GPT-5.5, April 2026).
+// The code was reviewed, tested, and adjusted by the student before submission.
 /* AI DATA PREPARATION */
 $aiText = "";
 
+// check if the AI response returned at least one row
 if ($result && mysqli_num_rows($result) > 0) {
 
     mysqli_data_seek($result, 0); // reset result pointer
 
+    // arrays to store the summary counts which are used in the response given by the AI
     $statusCounts = [];
     $townCounts = [];
     $stateCounts = [];
@@ -238,15 +241,19 @@ if ($result && mysqli_num_rows($result) > 0) {
         }
     }
 
-    // reset pointer again for table display
-    mysqli_data_seek($result, 0);
+    
+    mysqli_data_seek($result, 0); // goes back to the first row in the results section
 
+
+    // convert status counts into a readable string and sort data from highest to lowest
     $statusLine = implode(', ', array_map(fn($s,$c)=>"$c $s", array_keys($statusCounts), $statusCounts));
 
-    arsort($townCounts);
+    // sorts the data so the most common values appear first
+    arsort($townCounts); 
     arsort($stateCounts);
     arsort($skillCounts);
 
+    // prepares the final AI summary with the EOI statistics
     $aiText = "EOI Data Summary:\n"
         . "- Status breakdown: $statusLine\n"
         . "- Top towns: " . implode(', ', array_slice(array_keys($townCounts), 0, 3)) . "\n"
@@ -255,6 +262,7 @@ if ($result && mysqli_num_rows($result) > 0) {
 }
 
 /* AI CACHE CONTROL */
+
 $skipAiRefresh = !empty($_GET['search']) || !empty($_GET['sort']);
 
 // override cache behaviour after delete/update actions
@@ -321,7 +329,6 @@ include "header.inc";
             placeholder="Enter job reference, first or last name"
             value="<?php echo htmlspecialchars($_GET['search'] ?? ''); ?>">
 
-        <label for="sort">Sort results</label>
         <select id="sort" name="sort">
 
             <!-- sorting options control SQL ORDER BY -->
@@ -354,7 +361,6 @@ include "header.inc";
     <h2>Delete EOIs</h2>
 
     <form method="GET">
-        <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>">
         <label for="delete_job">Job Reference to delete</label>
         <input type="text" id="delete_job" name="delete_job" placeholder="Enter job reference">
         <input type="submit" value="Delete">
@@ -365,15 +371,14 @@ include "header.inc";
         <p class="manage-message"><?php echo $deleteMessage; ?></p>
     <?php endif; ?>
 
-    <!-- UPDATE SECTION -->
+    <!-- UPDATE STATUS SECTION -->
     <h2>Update Status</h2>
 
     <form method="GET">
-        <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>">
+
         <label for="eoi_id">EOI Number</label>
         <input type="text" id="eoi_id" name="eoi_id" placeholder="Enter EOI Number">
 
-        <label for="status">Status</label>
         <select id="status" name="status">
             <option>New</option>
             <option>Current</option>
@@ -420,21 +425,21 @@ include "header.inc";
             <!-- LOOP THROUGH ALL EOIs AND DISPLAY ROWS -->
             <?php while ($row = mysqli_fetch_assoc($result)): ?>
             <tr>
-            <td><?php echo htmlspecialchars($row['EOInumber']); ?></td>
-            <td><?php echo htmlspecialchars($row['ref_number']); ?></td>
-            <td><?php echo htmlspecialchars($row['first_name']); ?></td>
-            <td><?php echo htmlspecialchars($row['last_name']); ?></td>
-            <td><?php echo htmlspecialchars($row['date_of_birth']); ?></td>
-            <td><?php echo htmlspecialchars($row['gender']); ?></td>
-            <td><?php echo htmlspecialchars($row['street_address']); ?></td>
-            <td><?php echo htmlspecialchars($row['suburb_or_town']); ?></td>
-            <td><?php echo htmlspecialchars($row['state']); ?></td>
-            <td><?php echo htmlspecialchars($row['postcode']); ?></td>
-            <td><?php echo htmlspecialchars($row['email']); ?></td>
-            <td><?php echo htmlspecialchars($row['phone_number']); ?></td>
-            <td><?php echo htmlspecialchars($row['skills']); ?></td>
-            <td><?php echo htmlspecialchars($row['other_skills']); ?></td>
-            <td><?php echo htmlspecialchars($row['status']); ?></td>
+                <td><?php echo $row['EOInumber']; ?></td>
+                <td><?php echo $row['ref_number']; ?></td>
+                <td><?php echo $row['first_name']; ?></td>
+                <td><?php echo $row['last_name']; ?></td>
+                <td><?php echo $row['date_of_birth']; ?></td>
+                <td><?php echo $row['gender']; ?></td>
+                <td><?php echo $row['street_address']; ?></td>
+                <td><?php echo $row['suburb_or_town']; ?></td>
+                <td><?php echo $row['state']; ?></td>
+                <td><?php echo $row['postcode']; ?></td>
+                <td><?php echo $row['email']; ?></td>
+                <td><?php echo $row['phone_number']; ?></td>
+                <td><?php echo $row['skills']; ?></td>
+                <td><?php echo $row['other_skills']; ?></td>
+                <td><?php echo $row['status']; ?></td>
             </tr>
             <?php endwhile; ?>
 
@@ -443,7 +448,7 @@ include "header.inc";
     </div>
 
     <?php else: ?>
-        <p class="manage-message">No EOIs found.</p> <!-- fallback when query returns nothing -->
+        <p class="manage-message">No EOIs found.</p> <!-- displays when query returns nothing -->
     <?php endif; ?>
 
 </div>

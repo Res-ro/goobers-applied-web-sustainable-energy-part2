@@ -20,49 +20,42 @@ require_once("settings.php");
 
 <style>
 
-  /* Created embedded CSS for improving visual clarity and design of the form */
 
-  /* Form block containers spacing */
-  .application-form form div {
-      margin-bottom: 18px;
-  }
+/* embedded css */
+/* Interactive visual cue for when user hovers over radio inputs */
+/* Hover halo for radio buttons */
+.application-form input[type="radio"]:hover {
+    cursor: pointer;
+    box-shadow: 0 0 0 2px var(--custom-peanut2);
+    border-radius: 50%;
+}
 
-  /* Style fieldsets for a cleaner, cohesive structure */
-  .application-form fieldset {
-      border: 2px solid #ccc;
-      border-radius: 6px;
-      padding: 15px;
-      margin-top: 10px;
-  }
+/* Hover halo for checkboxes */
+.application-form input[type="checkbox"]:hover {
+    cursor: pointer;
+    box-shadow: 0 0 0 2px var(--custom-peanut2);
+    border-radius: 4px;
+}
 
-  /* Interactive visual cue for when user hovers over radio inputs */
-  .application-form input[type="radio"]:hover,
-  .application-form input[type="checkbox"]:hover {
-      cursor: pointer;
-      outline: 2px solid #0056b3;
-  }
-
-  /* Creates label spacing next to text inputs */
-  /* Reduces text thickness */
-  .application-form label {
-      display: inline-block;
-      margin-bottom: 5px;
-      font-weight: 500;
-  }
+/*  colours the checkboxes when ticked */
+.application-form input[type="radio"],
+.application-form input[type="checkbox"] {
+    accent-color: var(--main-bg);
+}
 
 </style>
 
   <main>
 
-    <section class="application-form" aria-labelledby="form-title">
+  <section class="application-form" aria-labelledby="form-title"
+           style="display:flex; flex-direction:column; justify-content:center; align-items:center;">
+
       <h2 id="form-title">Job Application Form</h2>
-
-
       <!-- This pushes the form data to the process_eoi.php file for processing and validation -->
       <!-- The novalidate attribute disables the browser's default validation, allowing for custom validation in process_eoi.php -->
       <!-- aria-label gives screen readers a meaningful name for the form -->
-      <form action="process_eoi.php" method="post" novalidate aria-label="Job Application Form">
-
+<form action="process_eoi.php" method="post" novalidate aria-label="Job Application Form"
+style="width:600px; margin:0 auto; display:flex; flex-direction:column; gap:15px; padding:25px; border-radius:16px; box-shadow:0 10px 25px rgba(0,0,0,0.15);">
         <!-- job reference number -->
         <!-- Applicant enters the reference number of the job they are applying for -->
         <div class="reference">
@@ -196,7 +189,7 @@ require_once("settings.php");
 
         <!-- Submit button: triggers form submission to process_eoi.php -->
         <!-- aria-label gives screen readers a more descriptive name than just "Submit" -->
-        <button class="custom-button" type="submit" aria-label="Submit job application form">Submit</button>
+        <button class="custom-button" type="submit" aria-label="Submit job application form" style="width:150px; align-self:center">Submit</button>
 
       </form>
     </section>
