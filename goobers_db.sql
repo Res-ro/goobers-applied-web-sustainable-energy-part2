@@ -176,10 +176,10 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`username`, `password`, `email`) VALUES
-('Aiden', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'aiden@swinburne.com'),
-('Huw', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'huw@swinburne.com'),
-('Ned', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'ned@swinburne.com'),
-('Tyler', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'tyler@swinburne.com');
+('Aiden', '$2y$10$OvcuSrvEVnMUTlrE42gvSe2N7S4rIIEUOpqe2/IB4DjJDK.0jvd3C', 'aiden@swinburne.com'),
+('Huw', '$2y$10$tJ.nwtgEh9FZGizDFqKLzeaQLkyZdC7z06vMm3LRKDPd1UXol/nLG', 'huw@swinburne.com'),
+('Ned', '$2y$10$FFhW0Nn5clRD/OEO2qQ52.AnT8C5o61ZQpcsWpHPI7G59VaNyLLcu', 'ned@swinburne.com'),
+('Tyler', '$2y$10$S45plo382FUp7MHXlMeMf.vQvtBiBm3rGrxT4lILeKzFJrL8Juzru', 'tyler@swinburne.com');
 
 --
 -- Indexes for dumped tables
