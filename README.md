@@ -2,15 +2,6 @@
 **Goobers Sustainable Energy** is a group project for Applied Web Project (Part 2) developing a website for a sustainable energy solutions company, focused on promoting renewable technologies, project information, and public engagement.
 
 ## 🎯 Project Purpose 🎯
-
-The purpose of this project is to:
-- Promote renewable energy technologies  
-- Provide information about sustainable energy solutions  
-- Showcase energy projects and initiatives  
-- Encourage public awareness and engagement  
-- Demonstrate web design and development skills
-
-## 🎯 Project Purpose 🎯
 The purpose of this project is to:
 - Promote renewable energy technologies  
 - Provide information about sustainable energy solutions  
@@ -38,10 +29,10 @@ This feature helps quickly understand trends in the EOI data without reading eve
 
 ## 👥 Contributors 👥
 **Project Team — Goobers**
-- Aiden Denny - Worked on the Home and About Us page.
-- Tyler Hicks - Worked on the Apply page.
-- Huw Cocking - Worked on the Jobs page.
-- Ned Altmann - Worked on overall refinement of all pages.
+- Aiden Denny - Worked on 50% of the Process EOI page, all of the Manage page and applied minor contributions to the Apply Page.
+- Tyler Hicks - Worked on Sanitation & Validation for Process_EOI, Designed CSS for Process_EOI, Changed Apply Page from client side validation to server side.
+- Huw Cocking - Updated jobs and about page to be dynamically rendered and created a jobs and about table.
+- Ned Altmann - Login and profile pages Update details pages reorganised CSS Converted HTML to modular PHP pages
 
 ## 📜 Licensing 📜
 
