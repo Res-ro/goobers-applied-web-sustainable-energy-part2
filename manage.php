@@ -329,7 +329,6 @@ include "header.inc";
             placeholder="Enter job reference, first or last name"
             value="<?php echo htmlspecialchars($_GET['search'] ?? ''); ?>">
 
-        <label for="sort">Sort results</label>
         <select id="sort" name="sort">
 
             <!-- sorting options control SQL ORDER BY -->
@@ -372,7 +371,7 @@ include "header.inc";
         <p class="manage-message"><?php echo $deleteMessage; ?></p>
     <?php endif; ?>
 
-    <!-- UPDATE SECTION -->
+    <!-- UPDATE STATUS SECTION -->
     <h2>Update Status</h2>
 
     <form method="GET">
@@ -380,7 +379,6 @@ include "header.inc";
         <label for="eoi_id">EOI Number</label>
         <input type="text" id="eoi_id" name="eoi_id" placeholder="Enter EOI Number">
 
-        <label for="status">Status</label>
         <select id="status" name="status">
             <option>New</option>
             <option>Current</option>
