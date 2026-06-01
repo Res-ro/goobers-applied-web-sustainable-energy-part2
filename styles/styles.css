@@ -274,7 +274,7 @@ header.header {
 /* Highlight profile image whenever dropdown is active */
 .dropdown:hover #profile_button {
 	transform: scale(1.1);
-	box-shadow: 0 0 8px rgba(255,255,255,0.8);
+	box-shadow: 0 0 8px var(--custom-title);
 	filter: brightness(1.2);
 }
 
