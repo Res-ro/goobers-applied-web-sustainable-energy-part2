@@ -1,3 +1,7 @@
+
+/* Container for the entire EOI result section */
+/* Centers the content and provides spacing */
+/* Ensures the container takes up the full width and has a minimum height for better visual balance */
 .eoi-success-container {
     display: flex;
     justify-content: center;
@@ -10,6 +14,9 @@
 }
 
 /* Creates the white box */
+/* Sets a fixed width with a maximum width for responsiveness */
+/* Adds padding for content spacing and rounded corners for a softer look */
+/* Centers the text and adds a border and shadow for visual separation from the background */
 .result-card {
     background-color: #ffffff;
     background: #ffffff;
@@ -25,6 +32,8 @@
     float: none;
 }
 
+/* Styling for the main heading inside the result card */
+/* Sets the color to match the theme, adds spacing below, and increases font size for emphasis */
 .result-card h1 {
     color: #8b6b13;
     margin-bottom: 30px;
@@ -33,6 +42,7 @@
     display: block;
 }
 
+/* Styling for the EOI number and value */
 .eoi-number {
     font-size: 1.5rem;
     margin: 30px 0;
@@ -40,6 +50,7 @@
     display: block;
 }
 
+/* Highlights the EOI value with a bold font and a distinct color */
 .eoi-value {
     font-weight: bold;
     color: #8b6b13;
@@ -47,6 +58,7 @@
 }
 
 /* Return Button Styling */
+/* Creates a button with padding, border, and rounded corners */
 .back-button {
     display: inline-block;
     padding: 12px 24px;
@@ -59,6 +71,7 @@
 
 
 /* Smooth transition effect */
+/* Changes the background color and text color on hover for better interactivity */
 .back-button {
     display: inline-block;
     padding: 12px 24px;
@@ -71,14 +84,15 @@
 }
 
 /* Hover effect */
+/* Changes the background color to a darker shade and text color to white for better visibility on hover */
 .back-button:hover {
     background-color: #8b6b13;
     color: #ffffff;
 }  
 
 
-
 /* Styling for the application validation error list inside the card */
+/* Aligns the text to the left and provides spacing around the list */
 .error-list {
     text-align: left;
     margin: 20px auto;
@@ -88,6 +102,7 @@
     line-height: 1.6;
 }
 
+/* Styling for each error item in the list */
 .error-list li {
     margin-bottom: 8px;
     font-weight: 500;
