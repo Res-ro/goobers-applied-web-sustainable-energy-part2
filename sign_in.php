@@ -13,28 +13,28 @@ $conn = mysqli_connect($host, $dbuser, $dbpass, $dbname);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-	$username = $_POST["username"];
-	$password = $_POST["password"];
+    $username = mysqli_real_escape_string($conn, $_POST["username"]);
+    $password = $_POST["password"]; 
 
-	$query = "SELECT * FROM user WHERE username = '$username' AND password = '$password'";
-	$result = mysqli_query($conn, $query);
-	$user = mysqli_fetch_assoc($result);
+    $query = "SELECT * FROM user WHERE username = '$username'";
+    $result = mysqli_query($conn, $query);
+    $user = mysqli_fetch_assoc($result);
 
-	if ($user) {
+    if ($user && password_verify($password, $user['password'])) {
 
-		$_SESSION['username'] = $user['username'];
-		$_SESSION['email'] = $user['email'];
-		$logLogin = "INSERT INTO login_history (username, login_time)
-					 VALUES ('$username', NOW())";
-		mysqli_query($conn, $logLogin);
-		header("Location: profile.php");
-		exit();
+        $_SESSION['username'] = $user['username'];
+        $_SESSION['email'] = $user['email'];
+        $logLogin = "INSERT INTO login_history (username, login_time)
+                     VALUES ('$username', NOW())";
+        mysqli_query($conn, $logLogin);
+        header("Location: profile.php");
+        exit();
 
-	} else {
-		$_SESSION['errormsg'] = "Invalid input, try again...";
-		header("Location: sign_in.php");
-		exit();
-	}
+    } else {
+        $_SESSION['errormsg'] = "Invalid input, try again...";
+        header("Location: sign_in.php");
+        exit();
+    }
 }
 
 ?>
