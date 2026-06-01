@@ -919,13 +919,8 @@ margin-top: 10px;
 	font-weight: bold;
 	margin: 0.67em 0;
 }
-
-
-
-
-				/* MANAGE PAGE */
-
-
+				
+/* MANAGE PAGE */
 
 
 /* =========================
@@ -933,13 +928,13 @@ margin-top: 10px;
 ========================= */
 
 .manage-container {
-	width: 98%;
-	max-width: 1500px;
+	width: 98%; /* full width container */
+	max-width: 1500px; /* max limit for the container */
 
 	margin: 30px auto;
 	padding: 30px;
 
-	background: var(--glass-white);
+	background: var(--glass-white); /* glass effect */
 
 	border: 2px solid var(--border-white-soft);
 	border-radius: 20px;
@@ -972,8 +967,10 @@ margin-top: 10px;
 
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: center;
+
+	justify-content: center; /* center items */
 	align-items: center;
+
 	gap: 12px;
 
 	background: linear-gradient(
@@ -988,15 +985,13 @@ margin-top: 10px;
 
 	backdrop-filter: blur(12px);
 
-	box-shadow:
-		0 6px 18px rgba(139,107,19,0.12),
-		0 2px 6px rgba(0,0,0,0.05);
+	box-shadow: 0 6px 18px rgba(139,107,19,0.12);
 
 	transition: 0.25s ease;
 }
 
 .manage-container form:hover {
-	transform: translateY(-2px);
+	transform: translateY(-2px); /* hover lift */
 }
 
 /* =========================
@@ -1013,7 +1008,6 @@ margin-top: 10px;
 	font-size: 0.95em;
 
 	background: white;
-
 	outline: none;
 
 	transition: 0.2s ease;
@@ -1021,12 +1015,12 @@ margin-top: 10px;
 	min-width: 140px;
 }
 
-/* search box slightly bigger */
+/* larger text input */
 .manage-container input[type="text"] {
 	min-width: 220px;
 }
 
-/* focus */
+/* focus highlight */
 .manage-container input:focus,
 .manage-container select:focus {
 	border-color: var(--custom-peanut);
@@ -1061,8 +1055,9 @@ margin-top: 10px;
 ========================= */
 
 .manage-table-wrap {
-	width: 100%;
-	overflow-x: auto;
+	width: 100%; /* full width */
+	overflow-x: auto; /* scroll if needed */
+
 	margin-top: 20px;
 }
 
@@ -1077,7 +1072,6 @@ margin-top: 10px;
 	border-collapse: collapse;
 
 	background: var(--custom-white);
-
 	border-radius: 15px;
 
 	overflow: hidden;
@@ -1091,21 +1085,20 @@ margin-top: 10px;
 
 	padding: 12px;
 
-	text-align: center;
-
-	font-size: 12px;
 	text-transform: uppercase;
+	font-size: 12px;
+
 	letter-spacing: 0.05em;
+	text-align: center;
 }
 
 .manage-table td {
 	padding: 10px;
 
-	text-align: center;
-
 	border-bottom: 1px solid #ddd;
-
 	font-size: 13px;
+
+	text-align: center;
 }
 
 .manage-table tr:hover td {
@@ -1113,17 +1106,14 @@ margin-top: 10px;
 }
 
 /* =========================
-   MESSAGE BOX
+   MESSAGE BOX FOR ERROR NOTIFICATION
 ========================= */
 
 .manage-message {
 	padding: 14px;
-
 	margin: 18px auto;
-
 	width: 70%;
 	max-width: 700px;
-
 	border-radius: 12px;
 
 	background: linear-gradient(
@@ -1137,7 +1127,6 @@ margin-top: 10px;
 	box-shadow: 0 4px 12px rgba(139,107,19,0.12);
 
 	font-weight: bold;
-
 	color: var(--custom-peanut);
 }
 
@@ -1148,38 +1137,36 @@ margin-top: 10px;
 .sort-bar {
 	margin: 15px auto;
 	padding: 12px;
-
 	width: 90%;
 	max-width: 900px;
-
 	display: flex;
-	justify-content: center;
+	justify-content: center; /* center controls */
 	align-items: center;
 	gap: 12px;
-
 	background: var(--glass-white);
 	border: 2px solid var(--border-white-soft);
 	border-radius: 12px;
-
 	backdrop-filter: blur(10px);
 }
 
 .sort-bar select,
 .sort-bar input {
 	padding: 8px 12px;
+
 	border-radius: 999px;
 	border: 1px solid #ccc;
+
 	font-size: 0.9em;
 }
 
 /* =========================
-   RESPONSIVENESS OF MANAGE PAGE
+   RESPONSIVE DESIGN
 ========================= */
 
 @media (max-width: 768px) {
 
 	.manage-container {
-		width: 95%;
+		width: 95%; /* smaller screen width */
 		padding: 18px;
 	}
 
@@ -1188,11 +1175,9 @@ margin-top: 10px;
 	}
 
 	.manage-table {
-		min-width: 900px;
+		min-width: 900px; /* keeps scroll function */
 	}
 }
-
-
 /* ========= PROFILE ============ */
 
 /* ========= ACCOUNT SETTINGS PAGE ========= */
