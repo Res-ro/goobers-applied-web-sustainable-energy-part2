@@ -167,7 +167,7 @@ INSERT INTO `login_history` (`id`, `username`, `login_time`) VALUES
 
 CREATE TABLE `user` (
   `username` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `email` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
