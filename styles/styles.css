@@ -991,7 +991,7 @@ margin-top: 10px;
 }
 
 .manage-container form:hover {
-	transform: translateY(-2px); /* hover lift */
+	transform: translateY(-2px); /* hover lift effect */
 }
 
 /* =========================

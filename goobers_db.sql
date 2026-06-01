@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.3
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 31, 2026 at 06:52 AM
--- Server version: 12.2.2-MariaDB
--- PHP Version: 8.5.6
+-- Generation Time: Jun 01, 2026 at 10:15 AM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -41,8 +41,8 @@ CREATE TABLE `about` (
 --
 
 INSERT INTO `about` (`id`, `name`, `student_id`, `quote`, `part1_contribution`, `part2_contribution`) VALUES
-(1, 'Aiden', '106501062', 'Pourquoi les programmeurs préfèrent-ils le mode sombre? Parce que la lumière attire les bugs. (Why do programmers prefer dark mode? Because light attracts bugs.)', 'Worked on the Home and About Us page.', 'Part 2 contribution to be updated.'),
-(2, 'Tyler', '106524221', "Hay 10 tipos de personas en el mundo: las que entienden el binario y las que no. (There are 10 types of people in the world: those who understand binary, and those who don\'t.)", "Worked on the Apply page & Developed the Jira Page.", "Part 2 contribution: Worked on Sanitation & Validation for Process_EOI, Designed CSS for Process_EOI, Changed Apply Page from client side validation to server side."),
+(1, 'Aiden', '106501062', 'Pourquoi les programmeurs préfèrent-ils le mode sombre? Parce que la lumière attire les bugs. (Why do programmers prefer dark mode? Because light attracts bugs.)', 'Worked on the Home and About Us page.', 'Worked on 50% of the Process EOI page, all of the Manage page and applied minor contributions to the Apply Page.\r\n'),
+(2, 'Tyler', '106524221', 'Hay 10 tipos de personas en el mundo: las que entienden el binario y las que no. (There are 10 types of people in the world: those who understand binary, and those who don\'t.)', 'Worked on the Apply page & Developed the Jira Page.', 'Part 2 contribution: Worked on Sanitation & Validation for Process_EOI, Designed CSS for Process_EOI, Changed Apply Page from client side validation to server side.'),
 (3, 'Huw', '106515526', 'SQLクエリがバーに入って2つのテーブルに近づき、『一緒に結合できますか？』と尋ねた (A SQL query goes into a bar, walks up to two tables and asks, \'Can I join you?\')', 'Worked on the Jobs page.', 'Updated jobs and about page to be dynamically rendered and created a jobs and about table.'),
 (4, 'Ned', '102566889', 'Um zu verstehen, was Rekursion ist, musst du zuerst Rekursion verstehen. (To understand what recursion is, you must first understand recursion.)', 'Worked on overall refinement of all pages.', 'Login and profile pages\r\nUpdate details pages\r\nreorganised CSS \r\nConverted HTML to modular PHP pages ');
 

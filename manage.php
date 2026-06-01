@@ -253,6 +253,7 @@ if ($result && mysqli_num_rows($result) > 0) {
     arsort($stateCounts);
     arsort($skillCounts);
 
+    // prepares the final AI summary with the EOI statistics
     $aiText = "EOI Data Summary:\n"
         . "- Status breakdown: $statusLine\n"
         . "- Top towns: " . implode(', ', array_slice(array_keys($townCounts), 0, 3)) . "\n"
@@ -261,6 +262,7 @@ if ($result && mysqli_num_rows($result) > 0) {
 }
 
 /* AI CACHE CONTROL */
+
 $skipAiRefresh = !empty($_GET['search']) || !empty($_GET['sort']);
 
 // override cache behaviour after delete/update actions
@@ -448,7 +450,7 @@ include "header.inc";
     </div>
 
     <?php else: ?>
-        <p class="manage-message">No EOIs found.</p> <!-- fallback when query returns nothing -->
+        <p class="manage-message">No EOIs found.</p> <!-- displays when query returns nothing -->
     <?php endif; ?>
 
 </div>
