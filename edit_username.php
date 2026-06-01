@@ -73,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 	<div class="error-message">
-		<?php echo $errormsg; ?>
+        <?php echo htmlspecialchars($errormsg); ?>
 	</div>
     <!-- OUTSIDE BUTTON (BOTTOM RIGHT) -->
     <div class="submit-container">

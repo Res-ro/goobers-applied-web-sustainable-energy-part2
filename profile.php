@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 <div class="profile-main">
-<h1>Welcome, <?php echo $username ?></h1>
+<h1>Welcome, <?php echo htmlspecialchars($username) ?></h1>
 
 
 
