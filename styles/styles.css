@@ -414,24 +414,14 @@ header.header {
 
 
 /* MAIN FORM CARD */
+/* moved to inline css */
 .application-form form {
-	width: 600px;
-	margin: 0 auto;
-	display: flex;
-	flex-direction: column;
-	gap: 15px;
-	padding: 25px;
 	background: var(--custom-white);
 	border: 2px solid var(--custom-peanut);
-	border-radius: 16px;
-	box-shadow: 0 10px 25px rgba(0,0,0,0.15);
 }
-.application-form {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-}
+
+
+
 /* SECTION "BUBBLES" */
 .reference, .personal, .address, .contact, .other {
 	display: flex;
@@ -441,6 +431,9 @@ header.header {
 	border-radius: 12px;
 	background: var(--custom-goobergray);
 }
+
+
+
 /* skills section container */
 .skills {
 	display: grid;
@@ -513,26 +506,6 @@ margin-top: 10px;
 }
 
 
-/* Interactive visual cue for when user hovers over radio inputs */
-/* Hover halo for radio buttons */
-.application-form input[type="radio"]:hover {
-    cursor: pointer;
-    box-shadow: 0 0 0 2px var(--custom-peanut2);
-    border-radius: 50%;
-}
-
-/* Hover halo for checkboxes */
-.application-form input[type="checkbox"]:hover {
-    cursor: pointer;
-    box-shadow: 0 0 0 2px var(--custom-peanut2);
-    border-radius: 4px;
-}
-
-/*  colours the checkboxes when ticked */
-.application-form input[type="radio"],
-.application-form input[type="checkbox"] {
-    accent-color: var(--main-bg);
-}
 
 
 				/* PROFILE PAGE */
