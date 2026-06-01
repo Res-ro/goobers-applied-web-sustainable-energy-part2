@@ -18,6 +18,40 @@ require_once("settings.php");
 <!-- Page title displayed in browser tab -->
 <title>Goobers - Apply</title>
 
+<style>
+
+  /* Created embedded CSS for improving visual clarity and design of the form */
+
+  /* Form block containers spacing */
+  .application-form form div {
+      margin-bottom: 18px;
+  }
+
+  /* Style fieldsets for a cleaner, cohesive structure */
+  .application-form fieldset {
+      border: 2px solid #ccc;
+      border-radius: 6px;
+      padding: 15px;
+      margin-top: 10px;
+  }
+
+  /* Interactive visual cue for when user hovers over radio inputs */
+  .application-form input[type="radio"]:hover,
+  .application-form input[type="checkbox"]:hover {
+      cursor: pointer;
+      outline: 2px solid #0056b3;
+  }
+
+  /* Creates label spacing next to text inputs */
+  /* Reduces text thickness */
+  .application-form label {
+      display: inline-block;
+      margin-bottom: 5px;
+      font-weight: 500;
+  }
+
+</style>
+
   <main>
 
     <section class="application-form" aria-labelledby="form-title">
